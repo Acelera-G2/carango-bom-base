@@ -11,8 +11,16 @@ import ListagemMarcas from './pages/ListagemMarcas';
 const muiTheme = createMuiTheme({
   palette: {
     primary: {
-      main: blue[900],
-    }
+     main: '#0F93FF'
+   },
+   secondary: {
+     light: '#CCCCCC',
+     main: '#06041F',
+   },
+   error: {
+     light: '#FA720C',
+     main: '#D9186D',
+   },
   },
 }, ptBR);
 

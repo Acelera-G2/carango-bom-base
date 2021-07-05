@@ -4,6 +4,7 @@ import AddIcon from '@material-ui/icons/Add';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import MarcaService from '../services/MarcaService';
+import ButonGeneric from '../components/Button/ButtonGeneric';
 
 const colunas = [
     { field: 'nome', headerName: 'Marca', width: 200 }
@@ -58,22 +59,23 @@ function ListagemMarcas() {
             />
 
             <div className={classes.actionsToolbar}>
-                <Button
+                <ButonGeneric
                     className={classes.actions}
-                    variant="contained"
+                    variant="outlined"
                     color="secondary"
                     disabled={!marcaSelecionada}
-                    onClick={() => excluir()}>
-                    Excluir
-                        </Button>
-                <Button
+                    onclick={() => excluir()}
+                    text="Excluir"
+                />
+                
+                <ButonGeneric
                     className={classes.actions}
-                    variant="contained"
+                    variant="outlined"
                     color="primary"
                     disabled={!marcaSelecionada}
-                    onClick={() => alterar()}>
-                    Alterar
-                </Button>
+                    onclick={() => alterar()}
+                    text="Alterar :)"
+                />
             </div>
 
             <Fab color="primary" aria-label="add" className={classes.fab} onClick={() => history.push('/cadastro-marca')}>
