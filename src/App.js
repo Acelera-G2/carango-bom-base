@@ -3,10 +3,8 @@ import blue from '@material-ui/core/colors/blue';
 import { ptBR } from '@material-ui/core/locale';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import CadastroMarca from './pages/CadastroMarca';
-import ListagemMarcas from './pages/ListagemMarcas';
+import Routes from './router/Route';
 
 const muiTheme = createMuiTheme({
   palette: {
@@ -52,17 +50,7 @@ function App() {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Container component="article" maxWidth="md">
-            <Switch>
-              <Route path="/cadastro-marca">
-                <CadastroMarca></CadastroMarca>
-              </Route>
-              <Route path='/alteracao-marca/:id'>
-                <CadastroMarca></CadastroMarca>
-              </Route>
-              <Route path="/">
-                <ListagemMarcas></ListagemMarcas>
-              </Route>
-            </Switch>
+            <Routes /> 
           </Container>
         </main>
       </div>
