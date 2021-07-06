@@ -5,7 +5,12 @@ import Layout from '../components/Layout/Layout';
 function RouteDefault({component: Component, ...rest}) {
     return(
         <RouteDOM {...rest} render={({...props})=>{
-            <Layout {...props} />
+            return(
+                <>
+                    <Layout {...props} />
+                    <Component />
+                </>
+            );
         }} />
     );
 }

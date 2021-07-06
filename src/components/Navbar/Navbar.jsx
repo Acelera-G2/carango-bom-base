@@ -18,11 +18,41 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import HomeIcon from '@material-ui/icons/Home';
+import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import StoreIcon from '@material-ui/icons/Store';
+import PersonIcon from '@material-ui/icons/Person';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 
 const drawerWidth = 240;
+const listMenu = [
+    {
+        text: 'Entar',
+        icon: <HomeIcon/>
+    },
+    {
+        text: 'Veículos',
+        icon: <DriveEtaIcon/>
+    },
+    {
+        text: 'Marcas',
+        icon: <StoreIcon/>
+    },
+    {
+        text: 'Usuários',
+        icon: <PersonIcon/>
+    },
+    {
+        text: 'Dashboard',
+        icon: <DashboardIcon/>
+    },
+    {
+        text: 'Sair',
+        icon: <ExitToAppIcon/>
+    }
+];
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -145,19 +175,10 @@ export default function Navbar({children}) {
                 </div>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+                    {listMenu.map((item, index) => (
+                        <ListItem button key={index}>
+                            <ListItemIcon>{item.icon}</ListItemIcon>
+                            <ListItemText primary={item.text} />
                         </ListItem>
                     ))}
                 </List>
