@@ -32,6 +32,15 @@ function CadastroMarca() {
         }
     }
 
+    const registerLocalStorage = () =>{
+        let existItem = localStorage.getItem("item")
+        existItem = existItem ? existItem.split(',') : [];
+        
+        existItem.push(marca)
+
+        localStorage.setItem("item",existItem.toString())
+    }
+
     const [erros, validarCampos, possoEnviar] = useErros(validacoes);
 
     function cancelar() {
@@ -48,6 +57,7 @@ function CadastroMarca() {
 
     return (
         <form onSubmit={(event) => {
+            console.log(event)
             event.preventDefault();
             if (possoEnviar()) {
                 if (id) {
@@ -56,11 +66,7 @@ function CadastroMarca() {
                             history.goBack();
                         });
                 } else {
-                    MarcaService.cadastrar({ nome: marca })
-                        .then(res => {
-                            setMarca("");
-                            history.goBack();
-                        });
+                   registerLocalStorage()
                 }
             }
         }}>
@@ -88,6 +94,7 @@ function CadastroMarca() {
                     disabled={!possoEnviar()}
                     text={id ? 'Alterar' : 'Cadastrar'}
                     className={classes.actions}
+                    onClick={registerLocalStorage}
                 />
 
                 <ButonGeneric
