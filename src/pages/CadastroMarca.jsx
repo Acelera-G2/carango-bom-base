@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
+import {Box, makeStyles} from '@material-ui/core';
+
 import useErros from '../hooks/useErros';
 import MarcaService from '../services/MarcaService';
 import ButonGeneric from '../components/Button/ButtonGeneric'
 import InputGeneric from '../components/input/Input';
-function CadastroMarca() {
 
+
+const useStyles = makeStyles(() => ({
+    actions: {
+        marginRight: "10px"
+    }
+}));
+
+function CadastroMarca() {
+    const classes = useStyles()
     const [marca, setMarca] = useState("");
 
     const history = useHistory();
@@ -70,20 +80,23 @@ function CadastroMarca() {
                 margin="normal"
             />
 
-            <ButonGeneric
-                variant="contained"
-                color="primary"
-                type="submit"
-                disabled={!possoEnviar()}
-                text={id ? 'Alterar' : 'Cadastrar'}
+            <Box display="flex" justifyContent="flex-end">
+                <ButonGeneric
+                    variant="outlined"
+                    color="primary"
+                    type="submit"
+                    disabled={!possoEnviar()}
+                    text={id ? 'Alterar' : 'Cadastrar'}
+                    className={classes.actions}
                 />
 
-            <ButonGeneric
-                variant="contained"
-                color="secondary"
-                onClick={cancelar}
-                text="Cancelar"
+                <ButonGeneric
+                    variant="outlined"
+                    color="secondary"
+                    onClick={cancelar}
+                    text="Cancelar"
                 />
+            </Box>
                 
         </form>
     );
