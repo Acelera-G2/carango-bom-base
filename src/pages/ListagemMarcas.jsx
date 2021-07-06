@@ -54,7 +54,7 @@ function ListagemMarcas() {
 
     return (
         <div style={{ height: 300, width: '100%' }}>
-            <DataGrid rows={marcas} columns={colunas}
+            <DataGrid rows={marcas} columns={colunas} checkboxSelection
                 onRowSelected={gridSelection => setMarcaSelecionada(gridSelection.data)}
             />
 
