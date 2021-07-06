@@ -1,9 +1,9 @@
-import { Button, TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import useErros from '../hooks/useErros';
 import MarcaService from '../services/MarcaService';
-
+import ButonGeneric from '../components/Button/ButtonGeneric'
+import InputGeneric from '../components/input/Input';
 function CadastroMarca() {
 
     const [marca, setMarca] = useState("");
@@ -54,7 +54,7 @@ function CadastroMarca() {
                 }
             }
         }}>
-            <TextField
+            <InputGeneric
                 value={marca}
                 onChange={evt => setMarca(evt.target.value)}
                 onBlur={validarCampos}
@@ -70,20 +70,21 @@ function CadastroMarca() {
                 margin="normal"
             />
 
-            <Button
+            <ButonGeneric
                 variant="contained"
                 color="primary"
                 type="submit"
-                disabled={!possoEnviar()}>
-                {id ? 'Alterar' : 'Cadastrar'}
-            </Button>
+                disabled={!possoEnviar()}
+                text={id ? 'Alterar' : 'Cadastrar'}
+                />
 
-            <Button
+            <ButonGeneric
                 variant="contained"
                 color="secondary"
-                onClick={cancelar}>
-                Cancelar
-            </Button>
+                onClick={cancelar}
+                text="Cancelar"
+                />
+                
         </form>
     );
 }
