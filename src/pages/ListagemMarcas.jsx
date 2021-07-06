@@ -48,8 +48,14 @@ function ListagemMarcas() {
     useEffect(() => carregarMarcas(), []);
 
     function carregarMarcas() {
-        MarcaService.listar()
-            .then(dados => setMarcas(dados));
+        
+        const listBrand = localStorage.getItem("item")
+        const arrListBrand = listBrand.split(',').map((item, index) => {
+            const obj = {id:index,nome: item}
+            return obj
+        })
+        setMarcas(arrListBrand)
+        
     }
 
     return (
@@ -57,7 +63,6 @@ function ListagemMarcas() {
             <DataGrid rows={marcas} columns={colunas} checkboxSelection
                 onRowSelected={gridSelection => setMarcaSelecionada(gridSelection.data)}
             />
-
             <div className={classes.actionsToolbar}>
                 <ButonGeneric
                     className={classes.actions}
