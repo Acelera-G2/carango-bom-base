@@ -64,7 +64,7 @@ function ListagemMarcas() {
                     variant="outlined"
                     color="secondary"
                     disabled={!marcaSelecionada}
-                    onclick={() => excluir()}
+                    onClick={() => excluir()}
                     text="Excluir"
                 />
                 
@@ -73,7 +73,7 @@ function ListagemMarcas() {
                     variant="outlined"
                     color="primary"
                     disabled={!marcaSelecionada}
-                    onclick={() => alterar()}
+                    onClick={() => alterar()}
                     text="Alterar :)"
                 />
             </div>
