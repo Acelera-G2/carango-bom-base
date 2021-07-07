@@ -6,7 +6,7 @@ import useErros from '../hooks/useErros';
 import MarcaService from '../services/MarcaService';
 import ButonGeneric from '../components/Button/ButtonGeneric'
 import InputGeneric from '../components/input/Input';
-
+import { CrudModule } from '../utils/modules'
 
 const useStyles = makeStyles(() => ({
     actions: {
@@ -33,12 +33,8 @@ function CadastroMarca() {
     }
 
     const registerLocalStorage = () =>{
-        let existItem = localStorage.getItem("item")
-        existItem = existItem ? existItem.split(',') : [];
-        
-        existItem.push(marca)
-
-        localStorage.setItem("item",existItem.toString())
+        const addBrand = CrudModule()
+        addBrand.add('item', marca)
     }
 
     const [erros, validarCampos, possoEnviar] = useErros(validacoes);
