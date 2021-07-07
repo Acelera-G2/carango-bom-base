@@ -3,8 +3,8 @@ import { DataGrid } from '@material-ui/data-grid';
 import AddIcon from '@material-ui/icons/Add';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import MarcaService from '../services/MarcaService';
 import ButonGeneric from '../components/Button/ButtonGeneric';
+import { CrudModule } from '../utils/modules';
 
 const colunas = [
     { field: 'nome', headerName: 'Marca', width: 200 }
@@ -27,40 +27,44 @@ const useStyles = makeStyles(() => ({
 
 function ListagemMarcas() {
     const [marcas, setMarcas] = useState([]);
+    const [arrIndexItems, setArrIndexItems] = useState();
     const [marcaSelecionada, setMarcaSelecionada] = useState();
     const classes = useStyles();
     const history = useHistory();
 
     function alterar() {
-        history.push('/alteracao-marca/' + marcaSelecionada.id);
+        history.push('/alteracao-marca/' + marcaSelecionada);
     }
 
     function excluir() {
-        MarcaService.excluir(marcaSelecionada)
-            .then(() => {
-                setMarcaSelecionada(null);
-                carregarMarcas();
-            });
+        const arrItem = localStorage.getItem('item');
+        const deleteItem = CrudModule();
+        deleteItem.delete('item',arrItem,arrIndexItems);
+        history.go(0);
     }
 
-    // TODO: Avaliar remover disable na próxima linha
-    // eslint-disable-next-line
     useEffect(() => carregarMarcas(), []);
 
     function carregarMarcas() {
         
-        const listBrand = localStorage.getItem("item")
-        const arrListBrand = listBrand.split(',').map((item, index) => {
-            const obj = {id:index,nome: item}
-            return obj
-        })
-        setMarcas(arrListBrand)
+        const listBrand = localStorage.getItem("item");
         
+        if(listBrand){
+            const arrListBrand = listBrand.split(',').map((item, index) => {
+                const obj = {id:index,nome: item};
+                return obj
+            })
+            setMarcas(arrListBrand);
+        }
+        else{
+            setMarcas([])
+        }
+
     }
 
     return (
         <div style={{ height: 300, width: '100%' }}>
-            <DataGrid rows={marcas} columns={colunas} checkboxSelection
+            <DataGrid rows={marcas} columns={colunas} checkboxSelection onSelectionModelChange={data =>setArrIndexItems(data.selectionModel)}
                 onRowSelected={gridSelection => setMarcaSelecionada(gridSelection.data)}
             />
             <div className={classes.actionsToolbar}>
