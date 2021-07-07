@@ -25,7 +25,7 @@ export const CrudModule = () =>{
     const editItemGeneric = (nameGetItem, itemIndex, valueGeneric) => {
         let item = localStorage.getItem(nameGetItem);
         item = item.split(',').map((itemGeneric, index) => {
-          return   index === parseInt(itemIndex) ? valueGeneric : itemGeneric
+          return index === parseInt(itemIndex) ? valueGeneric : itemGeneric
         })
         return localStorage.setItem(nameGetItem,item.toString());
 
