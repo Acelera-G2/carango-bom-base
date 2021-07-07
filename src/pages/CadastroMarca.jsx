@@ -6,7 +6,7 @@ import useErros from '../hooks/useErros';
 import MarcaService from '../services/MarcaService';
 import ButonGeneric from '../components/Button/ButtonGeneric'
 import InputGeneric from '../components/input/Input';
-import { CrudModule } from '../utils/modules'
+import { CrudModule } from '../utils/modules';
 
 const useStyles = makeStyles(() => ({
     actions: {
@@ -35,6 +35,7 @@ function CadastroMarca() {
     const registerLocalStorage = () =>{
         const addBrand = CrudModule()
         addBrand.add('item', marca)
+        history.goBack();
     }
 
     const [erros, validarCampos, possoEnviar] = useErros(validacoes);
