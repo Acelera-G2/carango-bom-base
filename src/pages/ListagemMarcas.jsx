@@ -1,8 +1,9 @@
+import React, { useEffect, useState } from 'react';
 import { Fab, makeStyles } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import AddIcon from '@material-ui/icons/Add';
-import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+
 import ButonGeneric from '../components/Button/ButtonGeneric';
 import { CrudModule } from '../utils/modules';
 
@@ -27,13 +28,13 @@ const useStyles = makeStyles(() => ({
 
 function ListagemMarcas() {
     const [marcas, setMarcas] = useState([]);
-    const [arrIndexItems, setArrIndexItems] = useState();
+    const [arrIndexItems, setArrIndexItems] = useState([]);
     const [marcaSelecionada, setMarcaSelecionada] = useState();
     const classes = useStyles();
     const history = useHistory();
 
     function alterar() {
-        history.push('/alteracao-marca/' + marcaSelecionada);
+        history.push('/alteracao-marca/' + arrIndexItems[0]);
     }
 
     function excluir() {
@@ -64,7 +65,8 @@ function ListagemMarcas() {
 
     return (
         <div style={{ height: 300, width: '100%' }}>
-            <DataGrid rows={marcas} columns={colunas} checkboxSelection onSelectionModelChange={data =>setArrIndexItems(data.selectionModel)}
+            <DataGrid rows={marcas} columns={colunas} checkboxSelection 
+                onSelectionModelChange={data =>setArrIndexItems(data.selectionModel)}
                 onRowSelected={gridSelection => setMarcaSelecionada(gridSelection.data)}
             />
             <div className={classes.actionsToolbar}>
@@ -81,7 +83,7 @@ function ListagemMarcas() {
                     className={classes.actions}
                     variant="outlined"
                     color="primary"
-                    disabled={!marcaSelecionada}
+                    disabled={arrIndexItems.length >= 2 || !marcaSelecionada }
                     onClick={() => alterar()}
                     text="Alterar :)"
                 />

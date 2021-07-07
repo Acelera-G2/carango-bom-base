@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import {Box, makeStyles} from '@material-ui/core';
-
 import useErros from '../hooks/useErros';
-import MarcaService from '../services/MarcaService';
+
 import ButonGeneric from '../components/Button/ButtonGeneric'
 import InputGeneric from '../components/input/Input';
 import { CrudModule } from '../utils/modules';
@@ -33,8 +32,16 @@ function CadastroMarca() {
     }
 
     const registerLocalStorage = () =>{
-        const addBrand = CrudModule()
-        addBrand.add('item', marca)
+        
+        if (possoEnviar()) {
+            if (id) {
+                const item = CrudModule();
+                item.editItem('item',id,marca)
+            } else {
+                const addBrand = CrudModule()
+                addBrand.add('item', marca,)
+            }
+        }
         history.goBack();
     }
 
@@ -47,25 +54,14 @@ function CadastroMarca() {
     // TODO: Avaliar remover disable na próxima linha
     useEffect(() => {
         if (id) {
-            MarcaService.consultar(id)
-                .then(m => setMarca(m.nome));
+            const item = CrudModule();
+                setMarca(item.getItem('item',id))
         }
     }, [id]); // eslint-disable-line
 
     return (
         <form onSubmit={(event) => {
-            console.log(event)
             event.preventDefault();
-            if (possoEnviar()) {
-                if (id) {
-                    MarcaService.alterar({ id, nome: marca })
-                        .then(res => {
-                            history.goBack();
-                        });
-                } else {
-                   registerLocalStorage()
-                }
-            }
         }}>
             <InputGeneric
                 value={marca}
@@ -84,21 +80,22 @@ function CadastroMarca() {
             />
 
             <Box display="flex" justifyContent="flex-end">
+                
+                <ButonGeneric
+                    variant="outlined"
+                    color="secondary"
+                    onClick={cancelar}
+                    text="Cancelar"
+                    className={classes.actions}
+                />
+
                 <ButonGeneric
                     variant="outlined"
                     color="primary"
                     type="submit"
                     disabled={!possoEnviar()}
                     text={id ? 'Alterar' : 'Cadastrar'}
-                    className={classes.actions}
                     onClick={registerLocalStorage}
-                />
-
-                <ButonGeneric
-                    variant="outlined"
-                    color="secondary"
-                    onClick={cancelar}
-                    text="Cancelar"
                 />
             </Box>
                 
