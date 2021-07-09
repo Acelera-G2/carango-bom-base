@@ -19,6 +19,10 @@ function Routes() {
                     component={RegisterBrand}
                 />
                 <RouteDefault 
+                    path='/change-car/:id'
+                    component={RegisterCar}
+                />
+                <RouteDefault 
                     path='/register-car'
                     component={RegisterCar}
                 />
