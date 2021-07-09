@@ -18,6 +18,7 @@ function CadastroMarca() {
     const [marca, setMarca] = useState("");
 
     const history = useHistory();
+    const itemCrud = CrudModule('item');
 
     const { id } = useParams();
 
@@ -32,14 +33,11 @@ function CadastroMarca() {
     }
 
     const registerLocalStorage = () =>{
-        
         if (possoEnviar()) {
             if (id) {
-                const item = CrudModule();
-                item.editItem('item',id,marca)
+                itemCrud.editItem(id,marca)
             } else {
-                const addBrand = CrudModule()
-                addBrand.add('item', marca,)
+                itemCrud.add(marca)
             }
         }
         history.goBack();
@@ -54,8 +52,7 @@ function CadastroMarca() {
     // TODO: Avaliar remover disable na próxima linha
     useEffect(() => {
         if (id) {
-            const item = CrudModule();
-                setMarca(item.getItem('item',id))
+                setMarca(itemCrud.getItem(id))
         }
     }, [id]); // eslint-disable-line
 

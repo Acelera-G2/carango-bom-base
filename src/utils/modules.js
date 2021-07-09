@@ -1,13 +1,13 @@
 export const CrudModule = (localStorageItem) =>{
     let getLocalStorage = localStorage.getItem(localStorageItem);
-   
-    const addItemGeneric = (itemArr) =>{
+
+    const addItemGeneric = (itemArr) => {
         getLocalStorage = getLocalStorage ? getLocalStorage.split(',') : [];        
         getLocalStorage.push(itemArr);
        return localStorage.setItem(localStorageItem,getLocalStorage.toString());
     }
     
-    const deleteItemGeneric = ( itemArr, arrIndexItems) =>{
+    const deleteItemGeneric = ( itemArr, arrIndexItems) => {
         getLocalStorage = itemArr.split(',');
         getLocalStorage = getLocalStorage.filter(function(_, index) {
             return arrIndexItems.indexOf(index) === -1;

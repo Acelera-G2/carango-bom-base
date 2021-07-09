@@ -39,8 +39,8 @@ function ListagemMarcas() {
 
     function excluir() {
         const arrItem = localStorage.getItem('item');
-        const deleteItem = CrudModule();
-        deleteItem.delete('item',arrItem,arrIndexItems);
+        const deleteItem = CrudModule('item');
+        deleteItem.delete(arrItem,arrIndexItems);
         history.go(0);
     }
 
