@@ -10,7 +10,7 @@ export const CrudModule = (localStorageItem) =>{
     const deleteItemGeneric = ( itemArr, arrIndexItems) => {
         getLocalStorage = itemArr.split(',');
         getLocalStorage = getLocalStorage.filter(function(_, index) {
-            return arrIndexItems.indexOf(index) === -1;
+            return arrIndexItems.map(Number).indexOf(index) === -1;
        })
        return localStorage.setItem(localStorageItem,getLocalStorage.toString());
     }
