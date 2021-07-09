@@ -4,8 +4,8 @@ import { DataGrid } from '@material-ui/data-grid';
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router';
 
-import ButonGeneric from '../components/Button/ButtonGeneric';
-import { CrudModule } from '../utils/modules';
+import ButonGeneric from '../../components/Button/ButtonGeneric';
+import { CrudModule } from '../../utils/modules';
 
 const colunas = [
     { field: 'nome', headerName: 'Marca', width: 200 }
@@ -34,7 +34,7 @@ function ListagemMarcas() {
     const history = useHistory();
 
     function alterar() {
-        history.push('/alteracao-marca/' + arrIndexItems[0]);
+        history.push('/change-brand/' + arrIndexItems[0]);
     }
 
     function excluir() {
@@ -89,7 +89,7 @@ function ListagemMarcas() {
                 />
             </div>
 
-            <Fab color="primary" aria-label="add" className={classes.fab} onClick={() => history.push('/cadastro-marca')}>
+            <Fab color="primary" aria-label="add" className={classes.fab} onClick={() => history.push('/register-brand')}>
                 <AddIcon />
             </Fab>
         </div>
