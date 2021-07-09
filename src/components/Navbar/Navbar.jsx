@@ -24,21 +24,23 @@ import StoreIcon from '@material-ui/icons/Store';
 import PersonIcon from '@material-ui/icons/Person';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
+import {Link} from 'react-router-dom';
 
 const drawerWidth = 240;
 const listMenu = [
     {
         text: 'Entar',
-        icon: <HomeIcon/>
+        icon: <HomeIcon/>,
     },
     {
         text: 'Veículos',
-        icon: <DriveEtaIcon/>
+        icon: <DriveEtaIcon/>,
+        link: '/list-car'
     },
     {
         text: 'Marcas',
-        icon: <StoreIcon/>
+        icon: <StoreIcon/>,
+        link: '/'
     },
     {
         text: 'Usuários',
@@ -176,10 +178,12 @@ export default function Navbar({children}) {
                 <Divider />
                 <List>
                     {listMenu.map((item, index) => (
-                        <ListItem button key={index}>
-                            <ListItemIcon>{item.icon}</ListItemIcon>
-                            <ListItemText primary={item.text} />
-                        </ListItem>
+                        <Link to={item.link} key={index}>
+                            <ListItem button>
+                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemText primary={item.text} />
+                            </ListItem>
+                        </Link>
                     ))}
                 </List>
             </Drawer>
