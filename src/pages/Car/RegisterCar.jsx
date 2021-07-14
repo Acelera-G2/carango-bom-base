@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router';
 import {Box, makeStyles} from '@material-ui/core';
-import  useErros  from '../../hooks/useErros';
-
 import {ButtonGeneric, InputGeneric} from '../../components';
 import { CrudModule } from '../../utils/modules';
+import useForm from '../../hooks/useForm';
+import { validateFormCar } from '../../validations/validationCar';
 
 const useStyles = makeStyles(() => ({
     actions: {
@@ -13,70 +13,48 @@ const useStyles = makeStyles(() => ({
 }));
 
 function RegisterCar() {
-    const classes = useStyles()
-    const [objCar, setObjCar] = useState({
+    const classes = useStyles();
+    const history = useHistory();
+    const itemCrud = CrudModule('itemCar');
+    const { id } = useParams();
+
+    const initialValues = {
         moduleCar: '',
         year: '',
         price: '',
-    });
-
-    const handleChange = (event) => {
-        const {name, value} = event.target;
-        setObjCar(prevState => ({
-            ...prevState,
-            [name]: value
-        }))
     }
+    
+    const { values, errors, handleChange, handleSubmit, setValues } = useForm(
+        initialValues,
+        formControl,
+        validateFormCar,
+    );
 
-    const history = useHistory();
-    const itemCrud = CrudModule('itemCar');
-
-    const { id } = useParams();
-
-    const validacoes = {
-        objCar: dado => {
-            if (dado && dado.length >= 3) {
-                return { valido: true };
-            } else {
-                return { valido: false, texto: "objCar deve ter ao menos 3 letras." }
-            }
-        }
-    }
-
-    const registerLocalStorage = () =>{
-        if (possoEnviar()) {
-            if (id) {
-                itemCrud.editItem(id,objCar)
-            } else {
-                itemCrud.add(objCar)
-            }
+    function formControl () {
+        if (id) {
+            itemCrud.editItem(id,values)
+        } else {
+            itemCrud.add(values)
         }
         history.goBack();
     }
-
-    const [erros, validarCampos, possoEnviar] = useErros(validacoes);
-
     function cancelar() {
         history.goBack();
     }
 
-    // TODO: Avaliar remover disable na próxima linha
     useEffect(() => {
         if (id) {
-                setObjCar(itemCrud.getItem(id))
+            setValues(itemCrud.getItem(id))
         }
-    }, [id, objCar]); // eslint-disable-line
+    }, [id]);
 
     return (
-        <form onSubmit={(event) => {
-            event.preventDefault();
-        }}>
+        <form onSubmit={handleSubmit}>
             <InputGeneric
-                value={objCar.moduleCar}
-                onChange={ handleChange }
-                // onBlur={validarCampos}
-                // helperText={erros.objCar.texto}
-                // error={!erros.objCar.valido}
+                value={values.moduleCar}
+                handleChange={ handleChange }
+                helperText={errors.moduleCar}
+                error={!!errors.moduleCar}
                 name="moduleCar"
                 id="moduleCar"
                 label="Modelo"
@@ -87,11 +65,10 @@ function RegisterCar() {
                 margin="normal"
             />
             <InputGeneric
-                value={objCar.year}
-                onChange={handleChange}
-                // onBlur={validarCampos}
-                // helperText={erros.objCar.texto}
-                // error={!erros.objCar.valido}
+                value={values.year}
+                handleChange={handleChange}
+                helperText={errors.year}
+                error={!!errors.year}
                 name="year"
                 id="year"
                 label="Ano"
@@ -102,11 +79,10 @@ function RegisterCar() {
                 margin="normal"
             />
             <InputGeneric
-                value={objCar.price}
-                onChange={handleChange}
-                // onBlur={validarCampos}
-                // helperText={erros.objCar.texto}
-                // error={!erros.objCar.valido}
+                value={values.price}
+                handleChange={handleChange}
+                helperText={errors.price}
+                error={!!errors.price}
                 name="price"
                 id="price"
                 label="Valor"
@@ -131,9 +107,7 @@ function RegisterCar() {
                     variant="outlined"
                     color="primary"
                     type="submit"
-                    // disabled={!possoEnviar()}
                     text={id ? 'Alterar' : 'Cadastrar'}
-                    onClick={registerLocalStorage}
                 />
             </Box>
                 
