@@ -34,4 +34,4 @@ function InputGeneric(props) {
         />
     );
 }
-export {InputGeneric};
+export { InputGeneric };

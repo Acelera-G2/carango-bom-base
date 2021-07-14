@@ -195,4 +195,4 @@ const Navbar = ({children}) => {
     );
 }
 
-export {Navbar}
+export { Navbar }

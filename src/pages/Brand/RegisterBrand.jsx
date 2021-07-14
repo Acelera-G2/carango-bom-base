@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
-import {Box, makeStyles} from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 import { ButtonGeneric, InputGeneric } from '../../components';
 import { CrudModule } from '../../utils/modules';
 import useForm from '../../hooks/useForm';
-import validateFormCar from '../../validation/validationCar';
+import validateFormCar from '../../validations/validationCar';
 const useStyles = makeStyles(() => ({
     actions: {
         marginRight: "10px"

@@ -19,4 +19,4 @@ function ButtonGeneric(props) {
     );
 }
 
-export {ButtonGeneric};
+export { ButtonGeneric };

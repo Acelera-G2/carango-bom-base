@@ -1,9 +1,9 @@
 import React from 'react';
-import {Navbar} from '../index';
+import {Navbar} from '..';
 
 function Layout({children}) {
     return(
         <Navbar children={children}/>
     );
 }
-export {Layout};
+export { Layout };

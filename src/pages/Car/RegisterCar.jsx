@@ -65,7 +65,6 @@ function RegisterCar() {
         if (id) {
                 setObjCar(itemCrud.getItem(id))
         }
-        console.log(objCar);
     }, [id, objCar]); // eslint-disable-line
 
     return (
