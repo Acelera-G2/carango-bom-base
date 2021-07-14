@@ -4,7 +4,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router';
 
-import { ButtonGeneric } from '../../components/Index';
+import {ButtonGeneric} from '../../components';
 import { CrudModule } from '../../utils/modules';
 
 const colunas = [

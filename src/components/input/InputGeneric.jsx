@@ -22,4 +22,4 @@ function InputGeneric({ value, onChange, onBlur,helperText, error, name, id, lab
         />
     );
 }
-export default InputGeneric;
+export {InputGeneric};

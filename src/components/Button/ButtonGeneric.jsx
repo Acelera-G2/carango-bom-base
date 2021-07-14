@@ -17,4 +17,4 @@ function ButtonGeneric({onClick, className, disabled, color, text,variant}) {
     );
 }
 
-export default ButtonGeneric;
+export {ButtonGeneric};

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import {Box, makeStyles} from '@material-ui/core';
-import useErros from '../../hooks/useErros';
+import  useErros  from '../../hooks/useErros';
 
-import { ButtonGeneric, InputGeneric } from '../../components/Index';
+import {ButtonGeneric, InputGeneric} from '../../components';
 import { CrudModule } from '../../utils/modules';
 
 const useStyles = makeStyles(() => ({

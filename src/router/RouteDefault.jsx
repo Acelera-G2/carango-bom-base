@@ -1,18 +1,18 @@
-import React from 'react';
-import {Route as RouteDOM}  from 'react-router-dom';
-import Layout from '../components/Layout/Layout';
+    import React from 'react';
+    import {Route as RouteDOM}  from 'react-router-dom';
+    import { Layout } from '../components';
 
-function RouteDefault({component: Component, ...rest}) {
-    return(
-        <RouteDOM {...rest} render={({...props})=>{
-            return(
-                <>
-                    <Layout {...props} />
-                    <Component />
-                </>
-            );
-        }} />
-    );
-}
+    function RouteDefault({component: Component, ...rest}) {
+        return(
+            <RouteDOM {...rest} render={({...props})=>{
+                return(
+                    <>
+                        <Layout {...props} />
+                        <Component />
+                    </>
+                );
+            }} />
+        );
+    }
 
-export default RouteDefault;
+    export default RouteDefault;

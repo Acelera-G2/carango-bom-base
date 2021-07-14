@@ -1,11 +1,4 @@
-import ButtonGeneric from './Button/ButtonGeneric';
-import InputGeneric from './input/Input';
-import Layout from './Layout/Layout';
-import Navbar from './Navbar/Navbar';
-
-export{
-    ButtonGeneric,
-    InputGeneric,
-    Layout,
-    Navbar
-}
+export * from './Button/ButtonGeneric';
+export * from './Input/InputGeneric';
+export * from './Layout/Layout';
+export * from './Navbar/Navbar';
