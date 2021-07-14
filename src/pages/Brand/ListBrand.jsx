@@ -4,7 +4,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router';
 
-import ButonGeneric from '../../components/Button/ButtonGeneric';
+import { ButtonGeneric } from '../../components/Index';
 import { CrudModule } from '../../utils/modules';
 
 const colunas = [
@@ -70,7 +70,7 @@ function ListagemMarcas() {
                 onRowSelected={gridSelection => setMarcaSelecionada(gridSelection.data)}
             />
             <div className={classes.actionsToolbar}>
-                <ButonGeneric
+                <ButtonGeneric
                     className={classes.actions}
                     variant="outlined"
                     color="secondary"
@@ -79,7 +79,7 @@ function ListagemMarcas() {
                     text="Excluir"
                 />
                 
-                <ButonGeneric
+                <ButtonGeneric
                     className={classes.actions}
                     variant="outlined"
                     color="primary"

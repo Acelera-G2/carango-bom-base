@@ -3,8 +3,7 @@ import { useHistory, useParams } from 'react-router';
 import {Box, makeStyles} from '@material-ui/core';
 import useErros from '../../hooks/useErros';
 
-import ButonGeneric from '../../components/Button/ButtonGeneric'
-import InputGeneric from '../../components/input/Input';
+import { ButtonGeneric, InputGeneric } from '../../components/Index';
 import { CrudModule } from '../../utils/modules';
 
 const useStyles = makeStyles(() => ({
@@ -121,7 +120,7 @@ function RegisterCar() {
 
             <Box display="flex" justifyContent="flex-end">
                 
-                <ButonGeneric
+                <ButtonGeneric
                     variant="outlined"
                     color="secondary"
                     onClick={cancelar}
@@ -129,7 +128,7 @@ function RegisterCar() {
                     className={classes.actions}
                 />
 
-                <ButonGeneric
+                <ButtonGeneric
                     variant="outlined"
                     color="primary"
                     type="submit"

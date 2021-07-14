@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import {Box, makeStyles} from '@material-ui/core';
 import useErros from '../../hooks/useErros';
-
-import ButonGeneric from '../../components/Button/ButtonGeneric'
-import InputGeneric from '../../components/input/Input';
+import { ButtonGeneric, InputGeneric } from '../../components/Index';
 import { CrudModule } from '../../utils/modules';
 
 const useStyles = makeStyles(() => ({
@@ -78,7 +76,7 @@ function CadastroMarca() {
 
             <Box display="flex" justifyContent="flex-end">
                 
-                <ButonGeneric
+                <ButtonGeneric
                     variant="outlined"
                     color="secondary"
                     onClick={cancelar}
@@ -86,7 +84,7 @@ function CadastroMarca() {
                     className={classes.actions}
                 />
 
-                <ButonGeneric
+                <ButtonGeneric
                     variant="outlined"
                     color="primary"
                     type="submit"

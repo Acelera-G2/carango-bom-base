@@ -2,7 +2,7 @@ import React from 'react';
 import { Button} from '@material-ui/core';
 
 
-function ButonGeneric({onClick, className, disabled, color, text,variant}) {
+function ButtonGeneric({onClick, className, disabled, color, text,variant}) {
     return(
         <Button
             className={className}
@@ -17,4 +17,4 @@ function ButonGeneric({onClick, className, disabled, color, text,variant}) {
     );
 }
 
-export default ButonGeneric;
+export default ButtonGeneric;
