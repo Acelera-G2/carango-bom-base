@@ -2,12 +2,25 @@ import React from 'react';
 import { TextField } from '@material-ui/core';
 
 
-function InputGeneric({ value, onChange, onBlur,helperText, error, name, id, label, type, variant, 
-                        fullWidth=false, required=false, margin}) {
+function InputGeneric(props) {
+    const {
+        label,
+        id,
+        type,
+        handleChange,
+        name,
+        error,
+        value,
+        onBlur,
+        helperText,
+        variant,
+        fullWidth,
+        margin,
+     } = props
     return(
         <TextField
-            value={value}
-            onChange={onChange}
+            value={value || ''}
+            onChange={handleChange}
             onBlur={onBlur}
             helperText={helperText}
             error={error}
@@ -17,7 +30,6 @@ function InputGeneric({ value, onChange, onBlur,helperText, error, name, id, lab
             type={type}
             variant={variant}
             fullWidth={fullWidth}
-            required={required}
             margin={margin}
         />
     );
