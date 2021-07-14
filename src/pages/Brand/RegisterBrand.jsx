@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import {Box, makeStyles} from '@material-ui/core';
-import  useErros  from '../../hooks/useErros';
 import { ButtonGeneric, InputGeneric } from '../../components';
 import { CrudModule } from '../../utils/modules';
-
+import useForm from '../../hooks/useForm';
+import validateFormCar from '../../validation/validationCar';
 const useStyles = makeStyles(() => ({
     actions: {
         marginRight: "10px"
@@ -13,66 +13,52 @@ const useStyles = makeStyles(() => ({
 
 function CadastroMarca() {
     const classes = useStyles()
-    const [marca, setMarca] = useState("");
-
     const history = useHistory();
     const itemCrud = CrudModule('item');
-
     const { id } = useParams();
-
-    const validacoes = {
-        marca: dado => {
-            if (dado && dado.length >= 3) {
-                return { valido: true };
-            } else {
-                return { valido: false, texto: "Marca deve ter ao menos 3 letras." }
-            }
-        }
+    const initialValues = {
+        marca: ''
     }
-
-    const registerLocalStorage = () =>{
-        if (possoEnviar()) {
+    const { values, errors, handleChange, handleSubmit, setValues } = useForm(
+        initialValues,
+        formControl,
+        validateFormCar,
+     );
+    function formControl (){
             if (id) {
-                itemCrud.editItem(id,marca)
+                itemCrud.editItem(id,values.marca)
             } else {
-                itemCrud.add(marca)
+                itemCrud.add(values.marca)
             }
-        }
-        history.goBack();
+            history.goBack();
     }
-
-    const [erros, validarCampos, possoEnviar] = useErros(validacoes);
-
     function cancelar() {
         history.goBack();
     }
-
     // TODO: Avaliar remover disable na próxima linha
     useEffect(() => {
         if (id) {
-                setMarca(itemCrud.getItem(id))
+            setValues(itemCrud.getItem(id))
         }
-    }, [id]); // eslint-disable-line
+    }, [id,errors]); // eslint-disable-line
 
     return (
-        <form onSubmit={(event) => {
-            event.preventDefault();
-        }}>
+        <form onSubmit={handleSubmit} >
             <InputGeneric
-                value={marca}
-                onChange={evt => setMarca(evt.target.value)}
-                onBlur={validarCampos}
-                helperText={erros.marca.texto}
-                error={!erros.marca.valido}
                 name="marca"
-                id="marca"
+                value={values.marca}
+                handleChange={handleChange}
                 label="Marca"
                 type="text"
                 variant="outlined"
                 fullWidth
-                required
                 margin="normal"
             />
+            {errors.marca && (
+                        <p className="is-danger align-message">
+                           {errors.marca}
+                        </p>
+                     )}
 
             <Box display="flex" justifyContent="flex-end">
                 
@@ -88,9 +74,8 @@ function CadastroMarca() {
                     variant="outlined"
                     color="primary"
                     type="submit"
-                    disabled={!possoEnviar()}
+                    disabled={!validateFormCar}
                     text={id ? 'Alterar' : 'Cadastrar'}
-                    onClick={registerLocalStorage}
                 />
             </Box>
                 
