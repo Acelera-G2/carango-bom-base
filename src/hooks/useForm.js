@@ -18,7 +18,7 @@ const useForm = (initialValues, callback, validate) => {
    };
 
    const handleChange = event => {
-      const { name, value, checked, type } = event.target;
+      const { name, value } = event.target;
       setValues(values => ({ ...values, [name]: value }));
    };
 
