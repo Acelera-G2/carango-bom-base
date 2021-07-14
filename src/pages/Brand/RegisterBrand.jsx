@@ -4,7 +4,7 @@ import { Box, makeStyles } from '@material-ui/core';
 import { ButtonGeneric, InputGeneric } from '../../components';
 import { CrudModule } from '../../utils/modules';
 import useForm from '../../hooks/useForm';
-import validateFormCar from '../../validations/validationCar';
+import { validateFormBrand } from '../../validations/validationCar';
 const useStyles = makeStyles(() => ({
     actions: {
         marginRight: "10px"
@@ -22,8 +22,8 @@ function CadastroMarca() {
     const { values, errors, handleChange, handleSubmit, setValues } = useForm(
         initialValues,
         formControl,
-        validateFormCar,
-     );
+        validateFormBrand,
+    );
     function formControl (){
         if (id) {
             itemCrud.editItem(id,values.marca)
