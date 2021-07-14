@@ -44,15 +44,15 @@ const listMenu = [
     },
     {
         text: 'Usuários',
-        icon: <PersonIcon/>
+        icon: <PersonIcon/>,
     },
     {
         text: 'Dashboard',
-        icon: <DashboardIcon/>
+        icon: <DashboardIcon/>,
     },
     {
         text: 'Sair',
-        icon: <ExitToAppIcon/>
+        icon: <ExitToAppIcon/>,
     }
 ];
 
@@ -178,7 +178,7 @@ const Navbar = ({children}) => {
                 <Divider />
                 <List>
                     {listMenu.map((item, index) => (
-                        <Link to={item.link} key={index}>
+                        <Link to={item.link|| '/' } key={index}>
                             <ListItem button>
                                 <ListItemIcon>{item.icon}</ListItemIcon>
                                 <ListItemText primary={item.text} />
