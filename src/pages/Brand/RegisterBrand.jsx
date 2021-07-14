@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { Box, makeStyles } from '@material-ui/core';
 import { ButtonGeneric, InputGeneric } from '../../components';
@@ -25,22 +25,21 @@ function CadastroMarca() {
         validateFormCar,
      );
     function formControl (){
-            if (id) {
-                itemCrud.editItem(id,values.marca)
-            } else {
-                itemCrud.add(values.marca)
-            }
-            history.goBack();
+        if (id) {
+            itemCrud.editItem(id,values.marca)
+        } else {
+            itemCrud.add(values.marca)
+        }
+        history.goBack();
     }
     function cancelar() {
         history.goBack();
     }
-    // TODO: Avaliar remover disable na próxima linha
     useEffect(() => {
         if (id) {
             setValues(itemCrud.getItem(id))
         }
-    }, [id,errors]); // eslint-disable-line
+    }, [id,errors]); 
 
     return (
         <form onSubmit={handleSubmit} >
@@ -48,17 +47,14 @@ function CadastroMarca() {
                 name="marca"
                 value={values.marca}
                 handleChange={handleChange}
+                helperText={errors.marca}
+                error={!!errors.marca}
                 label="Marca"
                 type="text"
                 variant="outlined"
                 fullWidth
                 margin="normal"
             />
-            {errors.marca && (
-                        <p className="is-danger align-message">
-                           {errors.marca}
-                        </p>
-                     )}
 
             <Box display="flex" justifyContent="flex-end">
                 
@@ -74,7 +70,6 @@ function CadastroMarca() {
                     variant="outlined"
                     color="primary"
                     type="submit"
-                    disabled={!validateFormCar}
                     text={id ? 'Alterar' : 'Cadastrar'}
                 />
             </Box>
