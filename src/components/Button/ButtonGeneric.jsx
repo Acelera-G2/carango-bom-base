@@ -2,7 +2,8 @@ import React from 'react';
 import { Button} from '@material-ui/core';
 
 
-function ButtonGeneric({onClick, className, disabled, color, text,variant}) {
+function ButtonGeneric(props) {
+    const { onClick, className, disabled, color, text,variant, type } = props
     return(
         <Button
             className={className}
@@ -11,6 +12,7 @@ function ButtonGeneric({onClick, className, disabled, color, text,variant}) {
             disabled={disabled}
             onClick={onClick}
             role="button"
+            type={type}
         >
             {text}
         </Button>
