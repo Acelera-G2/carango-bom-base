@@ -1,11 +1,11 @@
 import { Container, CssBaseline, makeStyles } from '@material-ui/core';
 import { ptBR } from '@material-ui/core/locale';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 import './App.css';
 import Routes from './router/Route';
 
-const muiTheme = createTheme({
+const muiTheme = createMuiTheme({
   palette: {
     primary: {
      main: '#0F93FF'
