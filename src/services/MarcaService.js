@@ -1,32 +1,38 @@
-const MarcaService = {
-  cadastrar(marca) {
-    return fetch('https://carango-bom-api.herokuapp.com/marcas', {
+const BrandService = {
+  async cadastrar(brand) {
+    const response = await fetch(`${process.env.REACT_APP_URL_BASE}/brands`, {
       method: 'POST',
-      body: JSON.stringify(marca)
-    }).then(r => r.json());
+      body: JSON.stringify(brand),
+      headers: { "Content-Type" : 'application/json'}
+    })
+    return await response.json()
   },
 
-  alterar(marca) {
-    return fetch('https://carango-bom-api.herokuapp.com/marcas/' + marca.id, {
+  async alterar(id,brand) {
+    const response = await fetch(`${process.env.REACT_APP_URL_BASE}/brands/${id}`, {
       method: 'PUT',
-      body: JSON.stringify(marca)
-    }).then(r => r.json());
+      body: JSON.stringify(brand),
+      headers: { "Content-Type" : 'application/json'}
+    })
+    return await response.json()
   },
 
-  consultar(id) {
-    return fetch('https://carango-bom-api.herokuapp.com/marcas/' + id).then(r => r.json());
+  async consultar(id) {
+    const response = await fetch(`${process.env.REACT_APP_URL_BASE}/brands/${id}`)
+    return response.json()
   },
 
-  listar() {
-    return fetch('https://carango-bom-api.herokuapp.com/marcas').then(r => r.json());
+  async listar() {
+    const response = await fetch(`${process.env.REACT_APP_URL_BASE}/brands`)
+    return await response.json()
   },
 
-  excluir(marca) {
-    return fetch('https://carango-bom-api.herokuapp.com/marcas/' + marca.id, {
+  async excluir(brand) {
+    const response = await fetch(`${process.env.REACT_APP_URL_BASE}/brands/${brand}`, {
       method: 'DELETE',
     })
-      .then(r => r.json());
+    return await response.json()
   }
 };
 
-export default MarcaService;
+export default BrandService;
