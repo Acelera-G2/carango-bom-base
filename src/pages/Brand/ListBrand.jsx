@@ -3,12 +3,12 @@
     import { DataGrid } from '@material-ui/data-grid';
     import AddIcon from '@material-ui/icons/Add';
     import { useHistory } from 'react-router';
-
     import { ButtonGeneric } from '../../components';
-    import { CrudModule } from '../../utils/modules';
+    import BrandService from '../../services/MarcaService';
 
     const colunas = [
-        { field: 'nome', headerName: 'Marca', width: 200 }
+        { field: 'id', headerName: 'ID', width: 200 },
+        { field: 'name', headerName: 'Marca', width: 200 }
     ];
 
     const useStyles = makeStyles(() => ({
@@ -37,31 +37,15 @@
             history.push('/change-brand/' + arrIndexItems[0]);
         }
 
-        function excluir() {
-            const arrItem = localStorage.getItem('item');
-            const deleteItem = CrudModule('item');
-            deleteItem.delete(arrItem,arrIndexItems);
+        const excluir = async() => {
+            await BrandService.excluir(arrIndexItems[0]);
             history.go(0);
         }
-
-        useEffect(() => carregarMarcas(), []);
-
-        function carregarMarcas() {
-            
-            const listBrand = localStorage.getItem("item");
-            
-            if(listBrand){
-                const arrListBrand = listBrand.split(',').map((item, index) => {
-                    const obj = {id:index,nome: item};
-                    return obj
-                })
-                setMarcas(arrListBrand);
-            }
-            else{
-                setMarcas([])
-            }
-
+        const carregarMarcas = async () => {
+            const listBrand = await BrandService.listar();
+            setMarcas(listBrand.content)
         }
+        useEffect(() => carregarMarcas(), []);
 
         return (
             <div style={{ height: 300, width: '100%' }}>
