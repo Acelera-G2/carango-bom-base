@@ -1,54 +1,64 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useCallback } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { Box, makeStyles } from '@material-ui/core';
 import { ButtonGeneric, InputGeneric } from '../../components';
-import { CrudModule } from '../../utils/modules';
 import useForm from '../../hooks/useForm';
 import { validateFormBrand } from '../../validations/validationCar';
+import BrandService from '../../services/MarcaService';
 const useStyles = makeStyles(() => ({
     actions: {
         marginRight: "10px"
     }
 }));
 
-function CadastroMarca() {
-    const classes = useStyles()
+ const CadastroMarca = () =>{
+    const classes = useStyles();
     const history = useHistory();
-    const itemCrud = CrudModule('item');
     const { id } = useParams();
     const initialValues = {
-        marca: ''
+        name: ''
     }
     const { values, errors, handleChange, handleSubmit, setValues } = useForm(
         initialValues,
         formControl,
         validateFormBrand,
-    );
-    function formControl (){
+        );
+
+    async function formControl (){
         if (id) {
-            itemCrud.editItem(id,values.marca)
+            const responseBrand =  await BrandService.alterar(id,values);
+            setValues(responseBrand)
         } else {
-            itemCrud.add(values.marca)
+            const responseBrand =  await BrandService.cadastrar(values);
+            setValues(responseBrand)
         }
+        history.push('/');
+    }
+    
+    const cancelar = () =>{
         history.goBack();
     }
-    function cancelar() {
-        history.goBack();
-    }
-    useEffect(() => {
-        if (id) {
-            setValues(itemCrud.getItem(id))
-        }
-    }, [id,errors]); 
+
+    const getUser = useCallback(async(id) =>{
+       const responseBrand =  await BrandService.consultar(id);
+       setValues(responseBrand)
+    },[setValues])
+   
+    useEffect(() => {    
+        if(id){
+
+            getUser(id)
+        } 
+    }, [id, getUser]); 
 
     return (
         <form onSubmit={handleSubmit} >
             <InputGeneric
-                name="marca"
-                value={values.marca}
+                name="name"
+                value={values.name}
                 handleChange={handleChange}
-                helperText={errors.marca}
-                error={!!errors.marca}
+                helperText={errors.name}
+                error={!!errors.name}
                 label="Marca"
                 type="text"
                 variant="outlined"
