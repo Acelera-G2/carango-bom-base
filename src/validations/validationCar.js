@@ -1,7 +1,7 @@
 function validateFormBrand(values) {
     let errors = {};
-    if (values.marca.length < 3) {
-       errors.marca = 'Tem que ser maior que 3 caracteres';
+    if (values.name.length < 3) {
+       errors.name = 'Tem que ser maior que 3 caracteres';
     }
     return errors
 }
@@ -20,7 +20,7 @@ function validateFormCar(values) {
     return errors
 }
 
-export  {
+export {
     validateFormBrand,
     validateFormCar,
 }
