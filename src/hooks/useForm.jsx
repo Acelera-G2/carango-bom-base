@@ -9,7 +9,7 @@ const useForm = (initialValues, callback, validate) => {
       if (isSubmitting && Object.keys(errors).length === 0) {
          callback();
       }
-   }, [errors, isSubmitting]);   
+   }, [errors, isSubmitting,callback]);
 
    const handleSubmit = event => {
       if (event) event.preventDefault();
@@ -18,8 +18,12 @@ const useForm = (initialValues, callback, validate) => {
    };
 
    const handleChange = event => {
-      const { name, value } = event.target;
-      setValues(values => ({ ...values, [name]: value }));
+      const { name, value, checked, type } = event.target;
+      if (type === 'checkbox') {
+         setValues(values => ({ ...values, [name]: checked }));
+      } else {
+         setValues(values => ({ ...values, [name]: value }));
+      }
    };
 
    return {
@@ -32,4 +36,3 @@ const useForm = (initialValues, callback, validate) => {
 };
 
 export default useForm;
-
