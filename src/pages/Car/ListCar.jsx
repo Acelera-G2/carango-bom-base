@@ -3,6 +3,7 @@ import { Fab, makeStyles } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router';
+import VehicleService from '../../services/VehicleService/VehicleService';
 
 import {ButtonGeneric} from '../../components';
 import { CrudModule } from '../../utils/modules';
@@ -47,24 +48,11 @@ function ListCar() {
         history.go(0);
     }
 
-    useEffect(() => carregarMarcas(), []);
-
-    function carregarMarcas() {
-        
-        const listBrand = localStorage.getItem("item");
-        
-        if(listBrand){
-            const arrListBrand = listBrand.split(',').map((item, index) => {
-                const obj = {id:index,nome: item};
-                return obj
-            })
-            setListCars(arrListBrand);
-        }
-        else{
-            setListCars([])
-        }
-
+    const VehicleChange = async () => {
+        const listBrand = await VehicleService.listar();
+        setListCars(listBrand.content)
     }
+    useEffect(() => VehicleChange(), []);
 
     return (
         <div style={{ height: 300, width: '100%' }}>
