@@ -4,7 +4,7 @@ import { Box, makeStyles } from '@material-ui/core';
 import { ButtonGeneric, InputGeneric } from '../../components';
 import useForm from '../../hooks/useForm';
 import { validateFormBrand } from '../../validations/validationCar';
-import BrandService from '../../services/MarcaService';
+import BrandService from '../../services/BrandService/BrandService';
 const useStyles = makeStyles(() => ({
     actions: {
         marginRight: "10px"

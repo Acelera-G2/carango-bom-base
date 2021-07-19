@@ -4,7 +4,7 @@
     import AddIcon from '@material-ui/icons/Add';
     import { useHistory } from 'react-router';
     import { ButtonGeneric } from '../../components';
-    import BrandService from '../../services/MarcaService';
+    import BrandService from '../../services/BrandService/BrandService';
 
     const colunas = [
         { field: 'id', headerName: 'ID', width: 200 },
