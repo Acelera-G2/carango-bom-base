@@ -19,7 +19,7 @@ function InputGeneric(props) {
      } = props
     return(
         <TextField
-            value={value}
+            value={value || ''}
             onChange={handleChange}
             onBlur={onBlur}
             helperText={helperText}
