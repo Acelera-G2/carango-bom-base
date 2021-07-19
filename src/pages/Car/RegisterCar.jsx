@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallbacks } from 'react';
 import { useHistory, useParams } from 'react-router';
 import {Box, makeStyles} from '@material-ui/core';
 import {ButtonGeneric, InputGeneric} from '../../components';
@@ -41,12 +41,14 @@ function RegisterCar() {
     function cancelar() {
         history.goBack();
     }
-
-    useEffect(() => {
+    
+    const isEditting = useCallback(() =>{
         if (id) {
             setValues(itemCrud.getItem(id))
         }
-    }, [id]);
+    },[id,setValues])
+    useEffect(() => {
+    }, [id,isEditting]);
 
     return (
         <form onSubmit={handleSubmit}>
