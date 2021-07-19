@@ -26,8 +26,8 @@
         }
     }));
 
-    function ListagemMarcas() {
-        const [marcas, setMarcas] = useState([]);
+    function BrandList() {
+        const [brandList, setBrandList] = useState([]);
         const [arrIndexItems, setArrIndexItems] = useState([]);
         const [marcaSelecionada, setMarcaSelecionada] = useState();
         const classes = useStyles();
@@ -41,15 +41,15 @@
             await BrandService.excluir(arrIndexItems[0]);
             history.go(0);
         }
-        const carregarMarcas = async () => {
+        const BrandChange = async () => {
             const listBrand = await BrandService.listar();
-            setMarcas(listBrand.content)
+            setBrandList(listBrand.content)
         }
-        useEffect(() => carregarMarcas(), []);
+        useEffect(() => BrandChange(), []);
 
         return (
             <div style={{ height: 300, width: '100%' }}>
-                <DataGrid rows={marcas} columns={colunas} checkboxSelection 
+                <DataGrid rows={brandList} columns={colunas} checkboxSelection 
                     onSelectionModelChange={data =>setArrIndexItems(data.selectionModel)}
                     onRowSelected={gridSelection => setMarcaSelecionada(gridSelection.data)}
                 />
@@ -80,4 +80,4 @@
         );
     }
 
-    export default ListagemMarcas;
+    export default BrandList;
