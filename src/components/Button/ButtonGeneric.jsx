@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 
 
 function ButtonGeneric(props) {
@@ -11,7 +11,7 @@ function ButtonGeneric(props) {
             color={color}
             disabled={disabled}
             onClick={onClick}
-            role="button"
+            role='button'
             type={type}
         >
             {text}
