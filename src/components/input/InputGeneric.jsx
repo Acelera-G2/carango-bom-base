@@ -28,6 +28,7 @@ function InputGeneric(props) {
             id={id}
             label={label}
             type={type}
+            role={'input'}
             variant={variant}
             fullWidth={fullWidth}
             margin={margin}
