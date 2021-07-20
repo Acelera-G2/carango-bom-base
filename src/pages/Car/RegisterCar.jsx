@@ -1,11 +1,11 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
-import {Box, makeStyles} from '@material-ui/core';
+import {Box, makeStyles,MenuItem} from '@material-ui/core';
 import {ButtonGeneric, InputGeneric} from '../../components';
-import { CrudModule } from '../../utils/modules';
 import useForm from '../../hooks/useForm';
 import { validateFormCar } from '../../validations/validationCar';
-
+import VehicleService from '../../services/VehicleService/VehicleService';
+import BrandService from '../../services/BrandService/BrandService';
 const useStyles = makeStyles(() => ({
     actions: {
         marginRight: "10px"
@@ -15,13 +15,13 @@ const useStyles = makeStyles(() => ({
 function RegisterCar() {
     const classes = useStyles();
     const history = useHistory();
-    const itemCrud = CrudModule('itemCar');
     const { id } = useParams();
-
+    const [listBrand, setListBrand] = useState([])
     const initialValues = {
-        moduleCar: '',
+        brandId:'',
+        model: '',
         year: '',
-        price: '',
+        value: '',
     }
     
     const { values, errors, handleChange, handleSubmit, setValues } = useForm(
@@ -30,35 +30,65 @@ function RegisterCar() {
         validateFormCar,
     );
 
-    function formControl () {
+    async function formControl (){
         if (id) {
-            itemCrud.editItem(id,values)
+            const responseVehicle =  await VehicleService.alterar(id,values);
+            setValues(responseVehicle)
         } else {
-            itemCrud.add(values)
+            const responseVehicle =  await VehicleService.cadastrar(values);
+            setValues(responseVehicle)
         }
-        history.goBack();
+        history.push('/list-car');
     }
     function cancelar() {
         history.goBack();
     }
     
-    const isEditting = useCallback(() =>{
-        if (id) {
-            setValues(itemCrud.getItem(id))
-        }
-    },[id,setValues])
+    const getVehicle = useCallback(async(id) =>{
+        const responseVehicle =  await VehicleService.consultar(id);
+        setValues(responseVehicle)
+     },[setValues])
+
+     const getBrand = async() =>{
+        const { content } =  await BrandService.listar();
+        setListBrand(content);
+     }
+
     useEffect(() => {
-    }, [id,isEditting]);
+        if(id){
+            getVehicle(id)
+        } 
+        getBrand()
+    }, [id, getVehicle]); 
 
     return (
         <form onSubmit={handleSubmit}>
             <InputGeneric
-                value={values.moduleCar}
+                value={values.brandId}
                 handleChange={ handleChange }
-                helperText={errors.moduleCar}
-                error={!!errors.moduleCar}
-                name="moduleCar"
-                id="moduleCar"
+                id="brandId"
+                label="Marca"
+                name="brandId"
+                variant="outlined"
+                fullWidth
+                required
+                margin="normal"
+                select={true}
+                defaultValue={34}
+            >
+                {listBrand.map((option, index) => (
+                <MenuItem key={option.id} value={option.id}>
+                    {option.name}
+                </MenuItem>
+            ))}
+            </InputGeneric>
+            <InputGeneric
+                value={values.model}
+                handleChange={ handleChange }
+                helperText={errors.model}
+                error={!!errors.model}
+                name="model"
+                id="model"
                 label="Modelo"
                 type="text"
                 variant="outlined"
@@ -81,12 +111,12 @@ function RegisterCar() {
                 margin="normal"
             />
             <InputGeneric
-                value={values.price}
+                value={values.value}
                 handleChange={handleChange}
-                helperText={errors.price}
-                error={!!errors.price}
-                name="price"
-                id="price"
+                helperText={errors.value}
+                error={!!errors.value}
+                name="value"
+                id="value"
                 label="Valor"
                 type="text"
                 variant="outlined"
