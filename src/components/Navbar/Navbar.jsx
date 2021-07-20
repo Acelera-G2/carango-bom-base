@@ -153,7 +153,7 @@ const Navbar = ({children}) => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Mini variant drawer
+                        Calango do Ópaió
                     </Typography>
                 </Toolbar>
             </AppBar>
