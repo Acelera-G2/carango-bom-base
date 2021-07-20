@@ -22,7 +22,7 @@ function InputGeneric(props) {
      } = props
     return(
         <>
-        {select &&  <TextField
+            {select &&  <TextField
                 value={value  || ''}
                 onChange={handleChange}
                 onBlur={onBlur}
@@ -41,7 +41,7 @@ function InputGeneric(props) {
                 {children}
             </TextField>}
 
-        {!select && <TextField
+            {!select && <TextField
                 value={value || ''}
                 onChange={handleChange}
                 onBlur={onBlur}

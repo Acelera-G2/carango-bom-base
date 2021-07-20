@@ -7,8 +7,9 @@
             <RouteDOM {...rest} render={({...props})=>{
                 return(
                     <>
-                        <Layout {...props} />
-                        <Component />
+                        <Layout {...props}>
+                            <Component />
+                        </Layout>
                     </>
                 );
             }} />
