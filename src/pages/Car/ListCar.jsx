@@ -4,15 +4,13 @@ import { DataGrid } from '@material-ui/data-grid';
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router';
 import VehicleService from '../../services/VehicleService/VehicleService';
+import { ButtonGeneric } from '../../components';
 
-import {ButtonGeneric} from '../../components';
-import { CrudModule } from '../../utils/modules';
-
-const colunas = [
+const columns = [
     { field: 'brand', headerName: 'Marca', width: 200 },
-    { field: 'moduleCar', headerName: 'Modelo', width: 200 },
+    { field: 'model', headerName: 'Modelo', width: 200 },
     { field: 'year', headerName: 'Ano', width: 200 },
-    { field: 'price', headerName: 'Valor', width: 200 }
+    { field: 'value', headerName: 'Valor', width: 200 }
 ];
 
 const useStyles = makeStyles(() => ({
@@ -38,13 +36,11 @@ function ListCar() {
     const history = useHistory();
 
     function alterar() {
-        history.push('/change-car/' + arrIndexItems[0]);
+        history.push(`/change-car/${arrIndexItems[0]}`);
     }
 
-    function excluir() {
-        const arrItem = localStorage.getItem('item');
-        const deleteItem = CrudModule('item');
-        deleteItem.delete(arrItem,arrIndexItems);
+    const excluir = async() => {
+        await VehicleService.excluir(arrIndexItems[0]);
         history.go(0);
     }
 
@@ -56,7 +52,7 @@ function ListCar() {
 
     return (
         <div style={{ height: 300, width: '100%' }}>
-            <DataGrid rows={listCars} columns={colunas} checkboxSelection 
+            <DataGrid rows={listCars} columns={columns} checkboxSelection 
                 onSelectionModelChange={data =>setArrIndexItems(data.selectionModel)}
                 onRowSelected={gridSelection => setSelectedCar(gridSelection.data)}
             />
@@ -68,8 +64,7 @@ function ListCar() {
                     disabled={!selectedCar}
                     onClick={() => excluir()}
                     text="Excluir"
-                />
-                
+                />    
                 <ButtonGeneric
                     className={classes.actions}
                     variant="outlined"
