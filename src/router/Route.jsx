@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, BrowserRouter } from 'react-router-dom';
 import RouteDefault from './RouteDefault';
 import RegisterBrand from '../pages/Brand/RegisterBrand';
-import ListBrand from '../pages/Brand/ListBrand';
+import Brandlist from '../pages/Brand/BrandList';
 import RegisterCar from '../pages/Car/RegisterCar';
 import ListCar from '../pages/Car/ListCar';
 
@@ -32,7 +32,7 @@ function Routes() {
                 />
                 <RouteDefault 
                     path="/"
-                    component={ListBrand}
+                    component={Brandlist}
                 />
             </Switch>
         </BrowserRouter>
