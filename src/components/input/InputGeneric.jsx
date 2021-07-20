@@ -16,22 +16,45 @@ function InputGeneric(props) {
         variant,
         fullWidth,
         margin,
+        select,
+        children,
+        defaultValue
      } = props
     return(
-        <TextField
-            value={value || ''}
-            onChange={handleChange}
-            onBlur={onBlur}
-            helperText={helperText}
-            error={error}
-            name={name}
-            id={id}
-            label={label}
-            type={type}
-            variant={variant}
-            fullWidth={fullWidth}
-            margin={margin}
-        />
+        <>
+        {select &&  <TextField
+                value={value  || ''}
+                onChange={handleChange}
+                onBlur={onBlur}
+                error={error}
+                name={name}
+                id={id}
+                select
+                label={label}
+                variant={variant}
+                fullWidth={fullWidth}
+                margin={margin}
+                helperText={helperText}
+                defaultValue={defaultValue}
+                >
+                {children}
+            </TextField>}
+
+        {!select && <TextField
+                value={value || ''}
+                onChange={handleChange}
+                onBlur={onBlur}
+                helperText={helperText}
+                error={error}
+                name={name}
+                id={id}
+                label={label}
+                type={type}
+                variant={variant}
+                fullWidth={fullWidth}
+                margin={margin}
+            />}
+        </>
     );
 }
 export { InputGeneric };
