@@ -5,6 +5,19 @@ function validateFormBrand(values) {
     }
     return errors
 }
+function validateFormUser(values) {
+    let errors = {};
+    if (values.name.length < 3) {
+       errors.name = 'Usuário precisa ter no mínimo 3 caracteres';
+    }
+    if (values.password.length < 8) {
+        errors.password = 'A senha precisa ter no mínimo 8 caracteres';
+     }
+     if (values.password !== values.confirmPassword) {
+        errors.confirmPassword = 'A senha não corresponde';
+     }
+    return errors
+}
 
 function validateFormCar(values) {
     let errors = {};
@@ -26,5 +39,6 @@ function validateFormCar(values) {
 export {
     validateFormBrand,
     validateFormCar,
+    validateFormUser,
 }
     
