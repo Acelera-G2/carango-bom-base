@@ -1,83 +1,54 @@
 import React, { useEffect, useState } from 'react';
-import { Fab, makeStyles } from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
-import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router';
 import VehicleService from '../../services/VehicleService/VehicleService';
-import { ButtonGeneric } from '../../components';
+import { TableGrid } from '../../components';
 
+const getBrand = (params) => {
+    return params.value.name;
+  }
 const columns = [
-    { field: 'brand', headerName: 'Marca', width: 200 },
+    { field: 'brand', headerName: 'Marca', width: 200,valueGetter: getBrand,},
     { field: 'model', headerName: 'Modelo', width: 200 },
     { field: 'year', headerName: 'Ano', width: 200 },
     { field: 'value', headerName: 'Valor', width: 200 }
 ];
 
-const useStyles = makeStyles(() => ({
-    fab: {
-        position: 'absolute',
-        bottom: '100px',
-        right: '100px',
-    },
-    actionsToolbar: {
-        float: 'right'
-    },
-    actions: {
-        top: '10px',
-        marginLeft: '10px',
-    }
-}));
-
-function ListCar() {
+const ListCar = () => {
     const [listCars, setListCars] = useState([]);
-    const [arrIndexItems, setArrIndexItems] = useState([]);
-    const [selectedCar, setSelectedCar] = useState();
-    const classes = useStyles();
+    const [selectVehicle,setSelectVehicle] = useState();
     const history = useHistory();
-
     function alterar() {
-        history.push(`/change-car/${arrIndexItems[0]}`);
+        history.push(`/change-car/${selectVehicle.id}`);
     }
 
     const excluir = async() => {
-        await VehicleService.excluir(arrIndexItems[0]);
+        await VehicleService.excluir(selectVehicle);
+        setSelectVehicle(null)
         history.go(0);
     }
 
     const VehicleChange = async () => {
-        const listBrand = await VehicleService.listar();
-        setListCars(listBrand.content)
+        const listVehicle = await VehicleService.listar();
+        setListCars(listVehicle?.content)
     }
-    useEffect(() => VehicleChange(), []);
+    useEffect(() => {
+        VehicleChange()
+        return () => {
+            setListCars([]);
+          };
+    }, []);
 
     return (
         <div style={{ height: 300, width: '100%' }}>
-            <DataGrid rows={listCars} columns={columns} checkboxSelection 
-                onSelectionModelChange={data =>setArrIndexItems(data.selectionModel)}
-                onRowSelected={gridSelection => setSelectedCar(gridSelection.data)}
-            />
-            <div className={classes.actionsToolbar}>
-                <ButtonGeneric
-                    className={classes.actions}
-                    variant="outlined"
-                    color="secondary"
-                    disabled={!selectedCar}
-                    onClick={() => excluir()}
-                    text="Excluir"
-                />    
-                <ButtonGeneric
-                    className={classes.actions}
-                    variant="outlined"
-                    color="primary"
-                    disabled={arrIndexItems.length >= 2 || !selectedCar }
-                    onClick={() => alterar()}
-                    text="Alterar"
-                />
-            </div>
-
-            <Fab color="primary" aria-label="add" className={classes.fab} onClick={() => history.push('/register-car')}>
-                <AddIcon />
-            </Fab>
+          <TableGrid  
+            rows={listCars}
+            columns={columns}
+            updateItem={alterar}
+            deleteItem={excluir}
+            disabled={!selectVehicle }
+            addItem={() => history.push('/register-car/')}
+            onRowSelected={setSelectVehicle}
+        />
         </div>
     );
 }
