@@ -19,18 +19,17 @@ describe('<ListCar />', () => {
         }),
       }));
       pushSpy = jest.spyOn(history, 'push');
-    
       jest.spyOn(VehicleService, 'listar').mockResolvedValue({content:[
-        { id: 1,brandId:1,model:'Onix',value:'50000',year:'2021', name: 'Chevrolet' },
-        { id: 2,brandId:2,model:'Fiesta',value:'50000',year:'2015', name: 'Ford' },
+        { id: 1, brand: { id:1, name:'Onix' }, model:'Chevrolet', value:'50000', year:'2021' },
+        { id: 2, brand: { id:1, name:'Fiesta' }, model:'Ford', value:'50000', year:'2015' },
       ]});
-      jest.spyOn(VehicleService, 'excluir').mockResolvedValue({ id: 1,brandId:1,model:'Onix',value:'50000',year:'2021', name: 'Chevrolet' },);
+      jest.spyOn(VehicleService, 'excluir').mockResolvedValue({ id: 2, brand: { id:1, name:'Onix' }, model:'Chevrolet', value:'50000', year:'2015' },);
     });
     beforeEach(async() => {
     act(async () => {
         global.fetch = render(
           <Router history={history}>     
-                <ListCar />
+            <ListCar />
           </Router>
         );
       });
@@ -55,7 +54,7 @@ describe('<ListCar />', () => {
   });
 
   it('Should redirect to brand update route when user click on update button', async () => {
-    const brandSelected = await screen.findByText('Onix');
+    const brandSelected = await screen.findByText('Chevrolet');
     const updateBtn = screen.getByRole('button', { name: 'Alterar' });
     userEvent.click(brandSelected);
     userEvent.click(updateBtn);
@@ -63,7 +62,7 @@ describe('<ListCar />', () => {
   });
 
   it('Should delete item', async () => {
-    const brandSelected = await screen.findByText('Onix');
+    const brandSelected = await screen.findByText('Chevrolet');
     const deleteBtn = screen.getByRole('button', { name: 'Excluir' });
     userEvent.click(brandSelected);
     userEvent.click(deleteBtn);
