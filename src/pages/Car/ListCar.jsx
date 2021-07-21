@@ -3,14 +3,17 @@ import { useHistory } from 'react-router';
 import VehicleService from '../../services/VehicleService/VehicleService';
 import { TableGrid } from '../../components';
 
+const getBrand = (params) => {
+    return params.value.name;
+  }
 const columns = [
-    { field: 'brand', headerName: 'Marca', width: 200 },
+    { field: 'brand', headerName: 'Marca', width: 200,valueGetter: getBrand,},
     { field: 'model', headerName: 'Modelo', width: 200 },
     { field: 'year', headerName: 'Ano', width: 200 },
     { field: 'value', headerName: 'Valor', width: 200 }
 ];
 
-function ListCar() {
+const ListCar = () => {
     const [listCars, setListCars] = useState([]);
     const [selectVehicle,setSelectVehicle] = useState();
     const history = useHistory();
