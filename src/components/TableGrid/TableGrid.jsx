@@ -44,6 +44,7 @@ const TableGrid = (props) =>{
                     onClick={deleteItem}
                     disabled={disabled}
                     text="Excluir"
+                    arial-label="Delete"
                     />
                     <ButtonGeneric
                     className={classes.actions}
@@ -51,6 +52,7 @@ const TableGrid = (props) =>{
                     color="primary"
                     onClick={updateItem}
                     text="Alterar"
+                    aria-label="Edit"
                     disabled={disabled}
                     />
                 </div>
