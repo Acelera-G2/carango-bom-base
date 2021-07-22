@@ -2,6 +2,8 @@ import React from 'react';
 import { Avatar, CssBaseline, makeStyles, Typography, Container, Link, Grid   } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {InputGeneric, ButtonGeneric} from '../../components';
+import useForm from '../../hooks/useForm';
+import { validateFormLogin } from '../../validations/validation';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +30,27 @@ const useStyles = makeStyles((theme) => ({
 
 const  Login = () => {
   const classes = useStyles();
+  const initialValues = {
+    username: '',
+    password: '',
+  }
+
+  const { values, errors, handleChange, handleSubmit, setValues } = useForm(
+    initialValues,
+    formControl,
+    validateFormLogin,
+    );
+
+    async function formControl (){
+        // if (id) {
+        //     const responseBrand =  await BrandService.alterar(id,values);
+        //     setValues(responseBrand)
+        // } else {
+        //     const responseBrand =  await BrandService.cadastrar(values);
+        //     setValues(responseBrand)
+        // }
+        // history.push('/');
+    }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -39,24 +62,33 @@ const  Login = () => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <InputGeneric
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
+            id="username"
+            label="Username"
             autoComplete="email"
             autoFocus
+            name="username"
+            value={values.username}
+            handleChange={handleChange}
+            helperText={errors.username}
+            error={!!errors.username}
+
           />
           <InputGeneric
+            name="password"
+            value={values.password}
+            handleChange={handleChange}
+            helperText={errors.password}
+            error={!!errors.password}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="password"
             label="Password"
             type="password"
             id="password"

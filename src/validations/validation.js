@@ -10,11 +10,21 @@ function validateFormUser(values) {
     if (values.name.length < 3) {
        errors.name = 'Usuário precisa ter no mínimo 3 caracteres';
     }
-    if (values.password.length < 8) {
-        errors.password = 'A senha precisa ter no mínimo 8 caracteres';
+    if (values.password.length < 6) {
+        errors.password = 'A senha precisa ter no mínimo 6 caracteres';
      }
      if (values.password !== values.confirmPassword) {
         errors.confirmPassword = 'A senha não corresponde';
+     }
+    return errors
+}
+function validateFormLogin(values) {
+    let errors = {};
+    if (values.username.length < 3) {
+       errors.username = 'Usuário precisa ter no mínimo 3 caracteres';
+    }
+    if (values.password.length < 6) {
+        errors.password = 'A senha precisa ter no mínimo  6 caracteres';
      }
     return errors
 }
@@ -40,5 +50,6 @@ export {
     validateFormBrand,
     validateFormCar,
     validateFormUser,
+    validateFormLogin,
 }
     
