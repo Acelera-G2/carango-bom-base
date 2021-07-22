@@ -3,3 +3,4 @@ export * from './Input/InputGeneric';
 export * from './Layout/Layout';
 export * from './Navbar/Navbar';
 export * from './TableGrid/TableGrid';
+export * from './Card/Card';
