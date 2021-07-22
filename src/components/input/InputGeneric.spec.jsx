@@ -8,4 +8,9 @@ describe('Input test', () => {
         const inputComponent = screen.getByRole('input');
         expect(inputComponent).toBeInTheDocument();
     })
+    it('should render input name',() => {
+        render(<InputGeneric value={'My value'}/>);
+        const inputComponent = screen.getByDisplayValue('My value');
+        expect(inputComponent).toBeInTheDocument();
+    })
 })
