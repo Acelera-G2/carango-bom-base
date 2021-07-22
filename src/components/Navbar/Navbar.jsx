@@ -24,13 +24,20 @@ import StoreIcon from '@material-ui/icons/Store';
 import PersonIcon from '@material-ui/icons/Person';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import FaceIcon from '@material-ui/icons/Face';
 import {Link} from 'react-router-dom';
 
 const drawerWidth = 240;
 const listMenu = [
     {
+        text: 'Inicio',
+        icon: <HomeIcon />,
+        link: '/list-car'
+    },
+    {
         text: 'Entar',
-        icon: <HomeIcon/>,
+        icon: <FaceIcon />,
+        link: '/login'
     },
     {
         text: 'Veículos',
