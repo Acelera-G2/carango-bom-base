@@ -1,6 +1,6 @@
 import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
-import { render, screen} from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
 import { Navbar } from '..';
 
 describe('Navbar component', () => {
@@ -30,7 +30,7 @@ describe('Navbar component', () => {
             </BrowserRouter>
         );
         const menuButton = screen.getByRole('button', {name:'open drawer'});
-        expect(menuButton).toBeInTheDocument();
+        expect(menuButton).toBeInTheDocument();      
     })
 })
 describe('Navbar list itens on menu', () => {

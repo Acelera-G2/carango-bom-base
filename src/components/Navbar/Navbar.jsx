@@ -143,6 +143,7 @@ const Navbar = ({children}) => {
                 <Toolbar>
                     <IconButton
                         color="inherit"
+                        name="menuExpandButton"
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
@@ -150,7 +151,7 @@ const Navbar = ({children}) => {
                             [classes.hide]: open,
                         })}
                     >
-                        <MenuIcon />
+                        <MenuIcon arial-label="button to Expand menu" data-testid="menuExpand"/>
                     </IconButton>
                     <Typography variant="h6" noWrap>
                         Calango do Ópaió
@@ -171,7 +172,7 @@ const Navbar = ({children}) => {
                 }}
             >
                 <div className={classes.toolbar}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton  arial-label="arrow to close menu" onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>
