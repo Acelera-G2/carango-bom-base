@@ -7,6 +7,7 @@ import RegisterCar from '../pages/Car/RegisterCar';
 import RegisterUser from '../pages/User/RegisterUser';
 import ListCar from '../pages/Car/ListCar';
 import ListUser from '../pages/User/ListUser';
+import Login from '../pages/Login/Login';
 
 function Routes() {
     return(
@@ -43,6 +44,10 @@ function Routes() {
                 <RouteDefault 
                     path='/change-user/:id'
                     component={RegisterUser}
+                />
+                <RouteDefault 
+                    path="/Login"
+                    component={Login}
                 />
                 <RouteDefault 
                     path="/"
