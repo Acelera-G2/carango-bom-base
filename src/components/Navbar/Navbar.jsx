@@ -45,6 +45,7 @@ const listMenu = [
     {
         text: 'Usuários',
         icon: <PersonIcon/>,
+        link: '/list-user'
     },
     {
         text: 'Dashboard',
