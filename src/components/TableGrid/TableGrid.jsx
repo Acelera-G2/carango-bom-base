@@ -32,7 +32,7 @@ const TableGrid = (props) =>{
     return(
        
          <div style={{ height: 300, width: '100%' }}>
-                <DataGrid rows={rows} columns={columns} pageSize={5}
+                <DataGrid rows={rows || []} columns={columns} pageSize={5}
                     onRowSelected={(gridSelection) => onRowSelected(gridSelection.data)}
 
                 />
