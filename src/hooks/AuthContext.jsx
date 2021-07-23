@@ -1,8 +1,10 @@
 import React, { useContext, createContext, useCallback, useState } from 'react';
-import AuthService from '../services/AuthService/AuthService'
+import AuthService from '../services/AuthService/AuthService';
+import { useHistory, useParams } from 'react-router';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+   const history = useHistory();
    const [data, setData] = useState(() => {
       const token = localStorage.getItem('@calango:token');
       if (token) {
@@ -16,6 +18,7 @@ const AuthProvider = ({ children }) => {
          token
       } = response;
       localStorage.setItem('@calango:token', token);
+      token && history.push('/list-car')
 
       setData( token );
    }, []);
