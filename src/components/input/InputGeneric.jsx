@@ -18,11 +18,12 @@ function InputGeneric(props) {
         margin,
         select,
         children,
-        defaultValue
+        defaultValue,
+        dataTestId
      } = props
     return(
         <>
-            {select &&  <TextField
+            { select && <TextField
                 value={value  || ''}
                 onChange={handleChange}
                 onBlur={onBlur}
@@ -37,6 +38,7 @@ function InputGeneric(props) {
                 margin={margin}
                 helperText={helperText}
                 defaultValue={defaultValue}
+                data-testid={dataTestId}
                 >
                 {children}
             </TextField>}
