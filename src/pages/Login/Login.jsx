@@ -5,7 +5,6 @@ import {InputGeneric, ButtonGeneric} from '../../components';
 import useForm from '../../hooks/useForm';
 import { validateFormLogin } from '../../validations/validation';
 import { useAuth } from '../../hooks/AuthContext';
-import AuthService from '../../services/AuthService/AuthService';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -98,10 +97,6 @@ const  Login = () => {
             id="password"
             autoComplete="current-password"
           />
-          {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
           <ButtonGeneric
             type="submit"
             fullWidth
