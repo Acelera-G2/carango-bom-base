@@ -9,17 +9,17 @@ function validateFormBrand(values) {
 function validateFormCar(values) {
     let errors = {};
     if (values.model.length < 3) {
-       errors.model = 'Tem que ser maior que 3 caracteres';
+       errors.model = 'Modelo tem que ser maior que 3 caracteres.';
     }
     if (values.year.length < 3) {
-        errors.year = 'Tem que ser maior que 3 caracteres';
+        errors.year = 'Ano tem que ser maior que 3 caracteres.';
     }
     if (values.value.length < 3) {
-    errors.value = 'Tem que ser maior que 3 caracteres';
+    errors.value = 'Valor tem que ser maior que 3 caracteres.';
     }
     if (values.brandId.length < 3) {
         errors.brandId = 'Tem que ser maior que 3 caracteres';
-        }
+    }
     return errors
 }
 
