@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router';
 import { Box, makeStyles } from '@material-ui/core';
 import { ButtonGeneric, InputGeneric } from '../../components';
 import useForm from '../../hooks/useForm';
-import { validateFormBrand } from '../../validations/validation';
+import { validateFormUser } from '../../validations/validation';
 import BrandService from '../../services/BrandService/BrandService';
 const useStyles = makeStyles(() => ({
     actions: {
@@ -11,17 +11,19 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
- const CadastroMarca = () =>{
+ const RegisterUser = () =>{
     const classes = useStyles();
     const history = useHistory();
     const { id } = useParams();
     const initialValues = {
-        name: ''
+        name: '',
+        password: '',
+        confirmPassword: '',
     }
     const { values, errors, handleChange, handleSubmit, setValues } = useForm(
         initialValues,
         formControl,
-        validateFormBrand,
+        validateFormUser,
         );
 
     async function formControl (){
@@ -40,8 +42,8 @@ const useStyles = makeStyles(() => ({
     }
 
     const getUser = useCallback(async(id) =>{
-       const responseBrand =  await BrandService.consultar(id);
-       setValues(responseBrand)
+       const responseUser =  await BrandService.consultar(id);
+       setValues(responseUser)
     },[setValues])
    
     useEffect(() => {    
@@ -59,8 +61,32 @@ const useStyles = makeStyles(() => ({
                 handleChange={handleChange}
                 helperText={errors.name}
                 error={!!errors.name}
-                label="Marca"
+                label="Usuário"
                 type="text"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+            />
+            <InputGeneric
+                name="password"
+                value={values.password}
+                handleChange={handleChange}
+                helperText={errors.password}
+                error={!!errors.password}
+                label="Senha"
+                type="password"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+            />
+            <InputGeneric
+                name="confirmPassword"
+                value={values.confirmPassword}
+                handleChange={handleChange}
+                helperText={errors.confirmPassword}
+                error={!!errors.confirmPassword}
+                label="Confirmar senha"
+                type="password"
                 variant="outlined"
                 fullWidth
                 margin="normal"
@@ -88,4 +114,4 @@ const useStyles = makeStyles(() => ({
     );
 }
 
-export default CadastroMarca;
+export default RegisterUser;

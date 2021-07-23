@@ -3,7 +3,7 @@ import {Button} from '@material-ui/core';
 
 
 function ButtonGeneric(props) {
-    const { onClick, className, disabled, color, text,variant, type } = props
+    const { onClick, className, disabled, color, text,variant, type, arialLabel } = props
     return(
         <Button
             className={className}
@@ -13,6 +13,7 @@ function ButtonGeneric(props) {
             onClick={onClick}
             role='button'
             type={type}
+            arial-label={arialLabel}
         >
             {text}
         </Button>

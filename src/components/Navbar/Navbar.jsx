@@ -24,13 +24,20 @@ import StoreIcon from '@material-ui/icons/Store';
 import PersonIcon from '@material-ui/icons/Person';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import FaceIcon from '@material-ui/icons/Face';
 import {Link} from 'react-router-dom';
 
 const drawerWidth = 240;
 const listMenu = [
     {
+        text: 'Inicio',
+        icon: <HomeIcon />,
+        link: '/list-car'
+    },
+    {
         text: 'Entar',
-        icon: <HomeIcon/>,
+        icon: <FaceIcon />,
+        link: '/login'
     },
     {
         text: 'Veículos',
@@ -45,6 +52,7 @@ const listMenu = [
     {
         text: 'Usuários',
         icon: <PersonIcon/>,
+        link: '/list-user'
     },
     {
         text: 'Dashboard',
@@ -143,6 +151,7 @@ const Navbar = ({children}) => {
                 <Toolbar>
                     <IconButton
                         color="inherit"
+                        name="menuExpandButton"
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
@@ -150,7 +159,7 @@ const Navbar = ({children}) => {
                             [classes.hide]: open,
                         })}
                     >
-                        <MenuIcon />
+                        <MenuIcon arial-label="button to Expand menu" data-testid="menuExpand"/>
                     </IconButton>
                     <Typography variant="h6" noWrap>
                         Calango do Ópaió
@@ -171,7 +180,7 @@ const Navbar = ({children}) => {
                 }}
             >
                 <div className={classes.toolbar}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton  arial-label="arrow to close menu" onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>

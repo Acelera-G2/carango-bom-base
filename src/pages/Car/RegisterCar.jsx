@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router';
 import {Box, makeStyles,MenuItem} from '@material-ui/core';
 import {ButtonGeneric, InputGeneric} from '../../components';
 import useForm from '../../hooks/useForm';
-import { validateFormCar } from '../../validations/validationCar';
+import { validateFormCar } from '../../validations/validation';
 import VehicleService from '../../services/VehicleService/VehicleService';
 import BrandService from '../../services/BrandService/BrandService';
 const useStyles = makeStyles(() => ({
