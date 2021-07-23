@@ -50,8 +50,8 @@ function RegisterCar() {
      },[setValues])
 
      const getBrand = async() =>{
-        const { content } =  await BrandService.listar();
-        setListBrand(content);
+        const response =  await BrandService.listar();
+        setListBrand(response?.content);
      }
 
     useEffect(() => {
@@ -59,6 +59,9 @@ function RegisterCar() {
             getVehicle(id)
         } 
         getBrand()
+        return () => {
+            setListBrand([]);
+          };
     }, [id, getVehicle]); 
 
     return (
@@ -71,12 +74,14 @@ function RegisterCar() {
                 name="brandId"
                 variant="outlined"
                 fullWidth
+                type="selec"
                 required
                 margin="normal"
                 select={true}
                 defaultValue={34}
+                dataTestId="select"
             >
-                {listBrand.map((option, index) => (
+                {listBrand?.map((option, index) => (
                 <MenuItem key={option.id} value={option.id}>
                     {option.name}
                 </MenuItem>
