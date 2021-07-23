@@ -35,7 +35,7 @@ const listMenu = [
     {
         text: 'Veículos',
         icon: <DriveEtaIcon/>,
-        link: '/list-car'
+        link: '/list-vehicle'
     },
     {
         text: 'Marcas',
