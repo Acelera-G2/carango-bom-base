@@ -4,6 +4,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 import './App.css';
 import Routes from './router/Route';
+import { AuthProvider } from './hooks/AuthContext';
 
 const muiTheme = createMuiTheme({
   palette: {
@@ -49,7 +50,9 @@ function App() {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Container component="article" maxWidth="md">
-            <Routes /> 
+            <AuthProvider>
+              <Routes /> 
+            </AuthProvider>
           </Container>
         </main>
       </div>
