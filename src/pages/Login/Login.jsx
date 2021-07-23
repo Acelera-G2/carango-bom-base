@@ -4,7 +4,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {InputGeneric, ButtonGeneric} from '../../components';
 import useForm from '../../hooks/useForm';
 import { validateFormLogin } from '../../validations/validation';
-
+import { useAuth } from '../../hooks/AuthContext';
+import AuthService from '../../services/AuthService/AuthService';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const  Login = () => {
+  const { sigIn } = useAuth();
+
   const classes = useStyles();
   const initialValues = {
     username: '',
@@ -42,14 +45,15 @@ const  Login = () => {
     );
 
     async function formControl (){
-        // if (id) {
-        //     const responseBrand =  await BrandService.alterar(id,values);
-        //     setValues(responseBrand)
-        // } else {
-        //     const responseBrand =  await BrandService.cadastrar(values);
-        //     setValues(responseBrand)
-        // }
-        // history.push('/');
+       try{
+         sigIn({
+          username: values.username,
+          password: values.password
+        })
+       }
+       catch(err){
+        console.log(err)
+       }
     }
 
   return (
