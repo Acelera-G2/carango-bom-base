@@ -50,7 +50,7 @@ describe('<ListCar />', () => {
   it('Should redirect to "cadastro-marca" when press "incluir" button', () => {
     const botaoExcluir = screen.getByTestId('adicionar');
     userEvent.click(botaoExcluir);
-    expect(pushSpy).toHaveBeenCalledWith('/register-car/');
+    expect(pushSpy).toHaveBeenCalledWith('/register-vehicle/');
   });
 
   it('Should redirect to brand update route when user click on update button', async () => {
@@ -58,7 +58,7 @@ describe('<ListCar />', () => {
     const updateBtn = screen.getByRole('button', { name: 'Alterar' });
     userEvent.click(brandSelected);
     userEvent.click(updateBtn);
-    expect(pushSpy).toHaveBeenCalledWith( '/change-car/' + 1);
+    expect(pushSpy).toHaveBeenCalledWith( '/change-vehicle/' + 1);
   });
 
   it('Should delete item', async () => {
