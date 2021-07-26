@@ -14,7 +14,7 @@ const BrandService = {
       body: JSON.stringify(brand),
       headers: { "Content-Type" : 'application/json'}
     }
-    return  HeaderApi.getHeader(`/brands/${id}`,headers)
+    return  HeaderApi.getHeader(`brands/${id}`,headers)
   },
 
   async consultar(id) {
