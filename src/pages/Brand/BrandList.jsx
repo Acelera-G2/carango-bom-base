@@ -25,7 +25,6 @@ function BrandList() {
         setBrandList(listBrand?.content)
     }
     useEffect(() => {
-        console.log(selectBrand)
         BrandChange()
         return () => {
             setBrandList([]);

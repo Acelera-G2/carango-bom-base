@@ -21,12 +21,12 @@ const AuthProvider = ({ children }) => {
       token && history.push('/list-vehicle')
 
       setData( token );
-   }, []);
+   }, [history]);
    const signOut = useCallback(() => {
       localStorage.removeItem('@calango:token');
       history.push('/login')
       setData({});
-   }, []);
+   }, [history]);
 
    return (
       <AuthContext.Provider

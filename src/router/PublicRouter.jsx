@@ -13,7 +13,7 @@ function PublicRouter() {
                 return(
                     <>
                     <Layout {...props}>
-                        <RouteDOM  path="/" component={Login} exact/>
+                        <RouteDOM  path="/" component={ListCar} exact/>
                         <RouteDOM  path="/login" component={Login}/>
                         <RouteDOM  path="/list-vehicle" component={ListCar}/>
                     </Layout>

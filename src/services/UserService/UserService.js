@@ -15,7 +15,7 @@ const UserService = {
       body: JSON.stringify(brand),
       headers: { "Content-Type" : 'application/json'}
     }
-    const response = HeaderApi.getHeader(`/users/${id}`,headers)
+    const response = HeaderApi.getHeader(`users/${id}`,headers)
     return await response
   },
 
@@ -33,7 +33,7 @@ const UserService = {
     const headers = {
       method: 'DELETE',
     }
-    const response = HeaderApi.getHeader(`/users/${user}`,headers)
+    const response = HeaderApi.getHeader(`users/${user}`,headers)
     return await response
   }
 };

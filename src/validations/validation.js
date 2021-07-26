@@ -7,8 +7,8 @@ function validateFormBrand(values) {
 }
 function validateFormUser(values) {
     let errors = {};
-    if (values.name.length < 3) {
-       errors.name = 'Usuário precisa ter no mínimo 3 caracteres';
+    if (values.username.length < 3) {
+       errors.username = 'Usuário precisa ter no mínimo 3 caracteres';
     }
     if (values.password.length < 6) {
         errors.password = 'A senha precisa ter no mínimo 6 caracteres';

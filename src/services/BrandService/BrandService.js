@@ -33,7 +33,7 @@ const BrandService = {
     const headers = {
       method: 'DELETE',
     }
-    const response = HeaderApi.getHeader(`/brands/${brand}`,headers)
+    const response = HeaderApi.getHeader(`brands/${brand}`,headers)
     return await response
   }
 };

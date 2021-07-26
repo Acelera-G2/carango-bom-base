@@ -19,7 +19,7 @@ const IsPrivateRoute = ({component: Component, ...rest}) => {
                     <Layout {...props}>
                         {token ? <Component />: (
                                     <Redirect
-                                        to={{ pathname: '/'}}
+                                        to={{ pathname: '/login'}}
                                     />)
                         }
                     </Layout>
@@ -71,10 +71,10 @@ const PrivateRoute = () =>{
                 path="/list-brand"
                 component={Brandlist}      
             />
-            {/* <RouteDOM path="*">
-                <Redirect from="*" to="/list-brand"/>
-            </RouteDOM> */}
-
+            <IsPrivateRoute 
+                path="/"
+                component={ListCar} exact   
+            />
         </>
     )
 }

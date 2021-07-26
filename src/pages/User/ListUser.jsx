@@ -4,7 +4,7 @@ import UserService from '../../services/UserService/UserService';
 import { TableGrid } from '../../components';
 
 const columns = [
-    { field: 'username', headerName: 'Users', width: 200}
+    { field: 'username', headerName: 'Usuários', width: 200}
 ];
 
 function UserList() {
