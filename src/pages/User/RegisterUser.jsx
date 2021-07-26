@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
             const responseBrand =  await UserService.cadastrar(values);
             setValues(responseBrand)
         }
-        // history.push('/list-user');
+        history.push('/list-user');
     }
     
     const cancelar = () =>{

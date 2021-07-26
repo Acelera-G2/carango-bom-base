@@ -6,7 +6,7 @@ import RegisterBrand from '../pages/Brand/RegisterBrand';
 import Brandlist from '../pages/Brand/BrandList';
 import RegisterCar from '../pages/Car/RegisterCar';
 import RegisterUser from '../pages/User/RegisterUser';
-import ListUser from '../pages/User/ListUser';
+import ListUser from '../pages/User/UserList';
 import ListCar from '../pages/Car/ListCar';
 
 const IsPrivateRoute = ({component: Component, ...rest}) => {

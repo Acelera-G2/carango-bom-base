@@ -5,7 +5,7 @@ import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import BrandService from '../../services/BrandService/BrandService';
 
-import ListUser from './ListUser';
+import ListUser from './UserList';
 
 describe('<BrandList />', () => {
   const history = createMemoryHistory();

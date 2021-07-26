@@ -1,11 +1,10 @@
 import React from 'react';
-import { Route as RouteDOM }  from 'react-router-dom';
+import { Route as RouteDOM,Switch }  from 'react-router-dom';
 import ListCar from '../pages/Car/ListCar';
 import Login from '../pages/Login/Login';
 import { Layout } from '../components';
-import { Switch } from 'react-router-dom';
 
-function PublicRouter() {
+function PublicRoute() {
 
     return(
         <Switch>
@@ -25,4 +24,4 @@ function PublicRouter() {
     );
 }
 
-export default PublicRouter;
+export default PublicRoute;
