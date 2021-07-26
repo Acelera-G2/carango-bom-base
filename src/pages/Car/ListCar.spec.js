@@ -21,10 +21,10 @@ describe('<ListCar />', () => {
       pushSpy = jest.spyOn(history, 'push');
     
       jest.spyOn(VehicleService, 'listar').mockResolvedValue({content:[
-        { id: 1,brandId:1,model:'Onix',value:'50000',year:'2021', name: 'Chevrolet' },
-        { id: 2,brandId:2,model:'Fiesta',value:'50000',year:'2015', name: 'Ford' },
+        { id: 1,brand:{id:2, name:'Chevrolet'},model:'Onix',value:'50000',year:'2021'},
+        {id: 2,brand:{id:4, name:'Fiesta'},model:'Ford',value:'50000',year:'2021'},
       ]});
-      jest.spyOn(VehicleService, 'excluir').mockResolvedValue({ id: 1,brandId:1,model:'Onix',value:'50000',year:'2021', name: 'Chevrolet' },);
+      jest.spyOn(VehicleService, 'excluir').mockResolvedValue({ id: 1,brand:{id:2, name:'Chevrolet'},model:'Onix',value:'50000',year:'2021'},);
     });
     beforeEach(async() => {
     act(async () => {

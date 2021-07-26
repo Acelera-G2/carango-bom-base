@@ -5,7 +5,7 @@ import VehicleService from './VehicleService';
           globalFetch = global.fetch;
           global.fetch = jest.fn(() => Promise.resolve({
               json: () => Promise.resolve({
-                id: 1,brandId:1,model:'Onix',value:'50000',year:'2021', name: 'Chevrolet'
+                id: 1,brand:{id:2, name:'Chevrolet'},model:'Onix',value:'50000',year:'2021'
               })
           }));
       });
@@ -16,8 +16,8 @@ import VehicleService from './VehicleService';
       it(('should list Brand'), async () => {
         jest.spyOn(global, 'fetch').mockResolvedValue({
           json: () => [
-            { id: 1,brandId:1,model:'Onix',value:'50000',year:'2021', name: 'Chevrolet' },
-            { id: 2,brandId:2,model:'Fiesta',value:'50000',year:'2015', name: 'Ford' },
+            { id: 1,brand:{id:2, name:'Chevrolet'},model:'Onix',value:'50000',year:'2021'},
+            {id: 2,brand:{id:4, name:'Fiesta'},model:'Ford',value:'50000',year:'2021'},
           ],
         }); 
         const list = await VehicleService.listar();
@@ -25,8 +25,8 @@ import VehicleService from './VehicleService';
       });
       
       it(('should register new Brand'), async () => {
-        const { name } = await VehicleService.cadastrar('Chevrolet');
-        expect(name).toBe('Chevrolet');
+        const { brand } = await VehicleService.cadastrar('Chevrolet');
+        expect(brand.name).toBe('Chevrolet');
       });
     
       it(('should register update Brand'), async () => {
@@ -40,8 +40,8 @@ import VehicleService from './VehicleService';
       });
     
       it(('should search Brand'), async () => {
-        const { name } = await VehicleService.consultar(1);
-        expect(name).toBe('Chevrolet');
+        const { brand } = await VehicleService.consultar(1);
+        expect(brand.name).toBe('Chevrolet');
       });
     
       it(('should delete Brand'), async () => {
