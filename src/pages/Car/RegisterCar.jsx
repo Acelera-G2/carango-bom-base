@@ -38,7 +38,7 @@ function RegisterCar() {
             const responseVehicle =  await VehicleService.cadastrar(values);
             setValues(responseVehicle)
         }
-        history.push('/list-car');
+        history.push('/list-vehicle');
     }
     function cancelar() {
         history.goBack();
