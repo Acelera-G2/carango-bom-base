@@ -8,15 +8,15 @@ const columns = [
 ];
 function BrandList() {
     const [brandList, setBrandList] = useState([]);
-    const [selectBrand,setSelectBrand] = useState();
+    const [selectBrand,setSelectBrand] = useState(null);
     const history = useHistory();
 
     function alterar() {
-        history.push('/change-brand/' + selectBrand.id);
+        history.push('/change-brand/' + selectBrand);
     }
 
     const excluir = async() => {
-        await BrandService.excluir(selectBrand.id);
+        await BrandService.excluir(selectBrand);
         setSelectBrand(null)
         history.go(0);
     }

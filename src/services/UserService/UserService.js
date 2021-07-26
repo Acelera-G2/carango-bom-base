@@ -1,11 +1,11 @@
 import { HeaderApi } from '../HeaderApi'
-const BrandService = {
-  async cadastrar(brand) {
+const UserService = {
+  async cadastrar(user) {
     const headers = {
       method: 'POST',
-      body: JSON.stringify(brand),
+      body: JSON.stringify(user),
     }
-    const response = HeaderApi.getHeader('brands',headers)
+    const response = HeaderApi.getHeader('users',headers)
     return await response
   },
 
@@ -15,27 +15,27 @@ const BrandService = {
       body: JSON.stringify(brand),
       headers: { "Content-Type" : 'application/json'}
     }
-    const response = HeaderApi.getHeader(`/brands/${id}`,headers)
+    const response = HeaderApi.getHeader(`users/${id}`,headers)
     return await response
   },
 
   async consultar(id) {
-   const response = HeaderApi.getHeader(`brands/${id}`,{})
+   const response = HeaderApi.getHeader(`users/${id}`,{})
     return await response
   },
 
   async listar() {
-    const response = HeaderApi.getHeader(`brands`,{})
+    const response = HeaderApi.getHeader(`users`,{})
     return await response
   },
 
-  async excluir(brand) {
+  async excluir(user) {
     const headers = {
       method: 'DELETE',
     }
-    const response = HeaderApi.getHeader(`brands/${brand}`,headers)
+    const response = HeaderApi.getHeader(`users/${user}`,headers)
     return await response
   }
 };
 
-export default BrandService;
+export default UserService;

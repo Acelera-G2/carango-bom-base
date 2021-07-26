@@ -14,7 +14,6 @@ import {
     ListItemText,
     IconButton
 } from '@material-ui/core';
-
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -24,38 +23,37 @@ import StoreIcon from '@material-ui/icons/Store';
 import PersonIcon from '@material-ui/icons/Person';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import FaceIcon from '@material-ui/icons/Face';
 import {Link} from 'react-router-dom';
+import { useAuth } from '../../hooks/AuthContext';
 
 const drawerWidth = 240;
 const listMenu = [
     {
-        text: 'Entar',
-        icon: <HomeIcon/>,
+        text: 'Inicio',
+        icon: <HomeIcon />,
+        link: '/list-vehicle',
     },
     {
         text: 'Veículos',
         icon: <DriveEtaIcon/>,
-        link: '/list-car'
+        link: '/list-vehicle'
     },
     {
         text: 'Marcas',
         icon: <StoreIcon/>,
-        link: '/'
+        link: '/list-brand',
     },
     {
         text: 'Usuários',
         icon: <PersonIcon/>,
-        link: '/list-user'
+        link: '/list-user',
     },
     {
         text: 'Dashboard',
         icon: <DashboardIcon/>,
         link: '/dashboard'
     },
-    {
-        text: 'Sair',
-        icon: <ExitToAppIcon/>,
-    }
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -121,6 +119,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = ({children}) => {
+    const{ token,signOut } = useAuth()
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -180,14 +179,26 @@ const Navbar = ({children}) => {
                 </div>
                 <Divider />
                 <List>
-                    {listMenu.map((item, index) => (
-                        <Link to={item.link|| '/' } key={index}>
+                    {listMenu.map((item, index) => 
+                        <Link to={item.link || '/'} key={index} style={{textDecoration:'none', color: '#212121'}}>
                             <ListItem button>
                                 <ListItemIcon>{item.icon}</ListItemIcon>
                                 <ListItemText primary={item.text} />
                             </ListItem>
                         </Link>
-                    ))}
+                    )}
+                    {!token && 
+                    <Link to='/login' style={{textDecoration:'none',color: '#212121'}}>
+                        <ListItem button>
+                                    <ListItemIcon><FaceIcon /></ListItemIcon>
+                                    <ListItemText primary={'Entrar'} />
+                        </ListItem>
+                    </Link>}
+                     { token && 
+                     <ListItem button onClick={signOut}>
+                                <ListItemIcon><ExitToAppIcon/></ListItemIcon>
+                                <ListItemText primary={'Sair'} />
+                     </ListItem>}
                 </List>
             </Drawer>
             <main className={classes.content}>

@@ -4,7 +4,7 @@ import { Box, makeStyles } from '@material-ui/core';
 import { ButtonGeneric, InputGeneric } from '../../components';
 import useForm from '../../hooks/useForm';
 import { validateFormUser } from '../../validations/validation';
-import BrandService from '../../services/BrandService/BrandService';
+import UserService from '../../services/UserService/UserService';
 const useStyles = makeStyles(() => ({
     actions: {
         marginRight: "10px"
@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
     const history = useHistory();
     const { id } = useParams();
     const initialValues = {
-        name: '',
+        username: '',
         password: '',
         confirmPassword: '',
     }
@@ -28,21 +28,21 @@ const useStyles = makeStyles(() => ({
 
     async function formControl (){
         if (id) {
-            const responseBrand =  await BrandService.alterar(id,values);
+            const responseBrand =  await UserService.alterar(id,values);
             setValues(responseBrand)
         } else {
-            const responseBrand =  await BrandService.cadastrar(values);
+            const responseBrand =  await UserService.cadastrar(values);
             setValues(responseBrand)
         }
-        history.push('/');
+        // history.push('/list-user');
     }
     
     const cancelar = () =>{
         history.goBack();
     }
 
-    const getUser = useCallback(async(id) =>{
-       const responseUser =  await BrandService.consultar(id);
+    const getUser = useCallback(async(idUser) =>{
+       const responseUser =  await UserService.consultar(idUser);
        setValues(responseUser)
     },[setValues])
    
@@ -56,11 +56,12 @@ const useStyles = makeStyles(() => ({
     return (
         <form onSubmit={handleSubmit} >
             <InputGeneric
-                name="name"
-                value={values.name}
+                name="username"
+                id="username"
+                value={values.username}
                 handleChange={handleChange}
-                helperText={errors.name}
-                error={!!errors.name}
+                helperText={errors.username}
+                error={!!errors.username}
                 label="Usuário"
                 type="text"
                 variant="outlined"
@@ -73,7 +74,8 @@ const useStyles = makeStyles(() => ({
                 handleChange={handleChange}
                 helperText={errors.password}
                 error={!!errors.password}
-                label="Senha"
+                label="Senha de Acesso"
+                id="senha"
                 type="password"
                 variant="outlined"
                 fullWidth
@@ -87,6 +89,7 @@ const useStyles = makeStyles(() => ({
                 error={!!errors.confirmPassword}
                 label="Confirmar senha"
                 type="password"
+                id="confirm-senha"
                 variant="outlined"
                 fullWidth
                 margin="normal"
