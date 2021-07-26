@@ -55,9 +55,5 @@ describe('Navbar list itens on menu', () => {
         const NavComponent = screen.getByText('Dashboard');
         expect(NavComponent).toBeInTheDocument();
     })
-    it('should render exit page',() => {
-        const NavComponent = screen.getByText('Sair');
-        expect(NavComponent).toBeInTheDocument();
-    })
 })
 

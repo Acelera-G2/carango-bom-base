@@ -52,6 +52,7 @@ const listMenu = [
     {
         text: 'Dashboard',
         icon: <DashboardIcon/>,
+        link: '/dashboard',
     },
 ];
 

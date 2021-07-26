@@ -8,6 +8,7 @@ import RegisterCar from '../pages/Car/RegisterCar';
 import RegisterUser from '../pages/User/RegisterUser';
 import ListUser from '../pages/User/UserList';
 import ListCar from '../pages/Car/ListCar';
+import Dashboard from '../pages/Dashboard/Dashboard';
 
 const IsPrivateRoute = ({component: Component, ...rest}) => {
     const { token } = useAuth();
@@ -69,6 +70,10 @@ const PrivateRoute = () =>{
             <IsPrivateRoute 
                 path="/list-brand"
                 component={Brandlist}      
+            />
+            <IsPrivateRoute 
+                path="/dashboard"
+                component={Dashboard}      
             />
             <IsPrivateRoute 
                 path="/"
