@@ -14,7 +14,6 @@ import {
     ListItemText,
     IconButton
 } from '@material-ui/core';
-
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -26,18 +25,18 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import FaceIcon from '@material-ui/icons/Face';
 import {Link} from 'react-router-dom';
-
+import { useAuth } from '../../hooks/AuthContext';
 const drawerWidth = 240;
 const listMenu = [
     {
         text: 'Inicio',
         icon: <HomeIcon />,
-        link: '/list-car'
+        link: '/list-car',
     },
     {
-        text: 'Entar',
+        text: 'Entrar',
         icon: <FaceIcon />,
-        link: '/login'
+        link: '/login',
     },
     {
         text: 'Veículos',
@@ -47,12 +46,12 @@ const listMenu = [
     {
         text: 'Marcas',
         icon: <StoreIcon/>,
-        link: '/'
+        link: '/list-brand',
     },
     {
         text: 'Usuários',
         icon: <PersonIcon/>,
-        link: '/list-user'
+        link: '/list-user',
     },
     {
         text: 'Dashboard',
@@ -127,6 +126,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = ({children}) => {
+    const { token,signOut } = useAuth();
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -186,14 +186,14 @@ const Navbar = ({children}) => {
                 </div>
                 <Divider />
                 <List>
-                    {listMenu.map((item, index) => (
-                        <Link to={item.link|| '/' } key={index}>
+                    {listMenu.map((item, index) => 
+                        <Link to={item.link} key={index}>
                             <ListItem button>
                                 <ListItemIcon>{item.icon}</ListItemIcon>
                                 <ListItemText primary={item.text} />
                             </ListItem>
-                        </Link>
-                    ))}
+                        </Link>    
+                    )}
                 </List>
             </Drawer>
             <main className={classes.content}>

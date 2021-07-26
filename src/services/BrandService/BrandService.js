@@ -1,37 +1,40 @@
+import {HeaderApi} from '../HeaderApi'
 const BrandService = {
   async cadastrar(brand) {
-    const response = await fetch(`${process.env.REACT_APP_URL_BASE}/brands`, {
+    const headers = {
       method: 'POST',
       body: JSON.stringify(brand),
-      headers: { "Content-Type" : 'application/json'}
-    })
-    return await response.json()
+    }
+    const response = HeaderApi.getHeader('brands',headers)
+    return await response
   },
 
   async alterar(id,brand) {
-    const response = await fetch(`${process.env.REACT_APP_URL_BASE}/brands/${id}`, {
+    const headers = {
       method: 'PUT',
       body: JSON.stringify(brand),
       headers: { "Content-Type" : 'application/json'}
-    })
-    return await response.json()
+    }
+    const response = HeaderApi.getHeader(`/brands/${id}`,headers)
+    return await response
   },
 
   async consultar(id) {
-    const response = await fetch(`${process.env.REACT_APP_URL_BASE}/brands/${id}`)
-    return response.json()
+   const response = HeaderApi.getHeader(`brands/${id}`,{})
+    return await response
   },
 
   async listar() {
-    const response = await fetch(`${process.env.REACT_APP_URL_BASE}/brands`)
-    return await response.json()
+    const response = HeaderApi.getHeader(`brands`,{})
+    return await response
   },
 
   async excluir(brand) {
-    const response = await fetch(`${process.env.REACT_APP_URL_BASE}/brands/${brand}`, {
+    const headers = {
       method: 'DELETE',
-    })
-    return await response.json()
+    }
+    const response = HeaderApi.getHeader(`/brands/${brand}`,headers)
+    return await response
   }
 };
 
