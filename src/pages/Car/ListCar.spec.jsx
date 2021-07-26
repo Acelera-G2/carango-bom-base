@@ -38,6 +38,7 @@ describe('<ListCar />', () => {
   afterEach(() => {
       global.fetch = globalRouter;
   });
+  
   it('Should render the component', () => {
     const deleteBtn = screen.getByRole('button', { name: 'Excluir' });
     const updateBtn = screen.getByRole('button', { name: 'Alterar' });
