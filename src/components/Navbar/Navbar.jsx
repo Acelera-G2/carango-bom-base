@@ -25,13 +25,12 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import FaceIcon from '@material-ui/icons/Face';
 import {Link} from 'react-router-dom';
-import { useAuth } from '../../hooks/AuthContext';
 const drawerWidth = 240;
 const listMenu = [
     {
         text: 'Inicio',
         icon: <HomeIcon />,
-        link: '/list-car',
+        link: '/list-vehicle',
     },
     {
         text: 'Entrar',
@@ -126,7 +125,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = ({children}) => {
-    const { token,signOut } = useAuth();
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -187,7 +185,7 @@ const Navbar = ({children}) => {
                 <Divider />
                 <List>
                     {listMenu.map((item, index) => 
-                        <Link to={item.link} key={index}>
+                        <Link to={item.link || '/'} key={index}>
                             <ListItem button>
                                 <ListItemIcon>{item.icon}</ListItemIcon>
                                 <ListItemText primary={item.text} />
