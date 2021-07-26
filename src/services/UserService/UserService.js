@@ -5,7 +5,7 @@ const UserService = {
       method: 'POST',
       body: JSON.stringify(user),
     }
-    return await HeaderApi.getHeader('users',headers)
+    return  HeaderApi.getHeader('users',headers)
   },
 
   async alterar(id,brand) {
@@ -14,22 +14,22 @@ const UserService = {
       body: JSON.stringify(brand),
       headers: { "Content-Type" : 'application/json'}
     }
-    return await HeaderApi.getHeader(`users/${id}`,headers)
+    return  HeaderApi.getHeader(`users/${id}`,headers)
   },
 
   async consultar(id) {
-    return await HeaderApi.getHeader(`users/${id}`,{})
+    return  HeaderApi.getHeader(`users/${id}`,{})
   },
 
   async listar() {
-    return await HeaderApi.getHeader(`users`,{})
+    return  HeaderApi.getHeader(`users`,{})
   },
 
   async excluir(user) {
     const headers = {
       method: 'DELETE',
     }
-    return await HeaderApi.getHeader(`users/${user}`,headers)
+    return  HeaderApi.getHeader(`users/${user}`,headers)
   }
 };
 

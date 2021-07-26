@@ -5,7 +5,7 @@ const VehicleService = {
       method: 'POST',
       body: JSON.stringify(vehicle),
     }
-    return await HeaderApi.getHeader('vehicles',headers)
+    return  HeaderApi.getHeader('vehicles',headers)
   },
 
   async alterar(vehicleId,vehicle) {
@@ -13,22 +13,22 @@ const VehicleService = {
       method: 'PUT',
       body: JSON.stringify(vehicle),
     }
-    return await HeaderApi.getHeader(`vehicles/${vehicleId}`,headers)
+    return  HeaderApi.getHeader(`vehicles/${vehicleId}`,headers)
   },
 
   async consultar(vehicleId) {
-    return await HeaderApi.getHeader(`vehicles/${vehicleId}`,{})
+    return  HeaderApi.getHeader(`vehicles/${vehicleId}`,{})
   },
 
   async listar() {
-    return await HeaderApi.getHeader(`vehicles`,{})
+    return  HeaderApi.getHeader(`vehicles`,{})
   },
 
   async excluir(vehicleId) {
     const headers = {
       method: 'DELETE',
     }
-    return await HeaderApi.getHeader(`vehicles/${vehicleId}`,headers)
+    return  HeaderApi.getHeader(`vehicles/${vehicleId}`,headers)
   }
 };
 

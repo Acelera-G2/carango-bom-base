@@ -39,8 +39,8 @@ const useStyles = makeStyles(() => ({
         history.goBack();
     }
 
-    const getUser = useCallback(async(id) =>{
-       const responseBrand =  await BrandService.consultar(id);
+    const getUser = useCallback(async(brandId) =>{
+       const responseBrand =  await BrandService.consultar(brandId);
        setValues(responseBrand)
     },[setValues])
    

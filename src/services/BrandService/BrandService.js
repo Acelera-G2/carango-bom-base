@@ -5,7 +5,7 @@ const BrandService = {
       method: 'POST',
       body: JSON.stringify(brand),
     }
-    return await HeaderApi.getHeader('brands',headers)
+    return  HeaderApi.getHeader('brands',headers)
   },
 
   async alterar(id,brand) {
@@ -14,22 +14,22 @@ const BrandService = {
       body: JSON.stringify(brand),
       headers: { "Content-Type" : 'application/json'}
     }
-    return await HeaderApi.getHeader(`/brands/${id}`,headers)
+    return  HeaderApi.getHeader(`/brands/${id}`,headers)
   },
 
   async consultar(id) {
-    return await HeaderApi.getHeader(`brands/${id}`,{})
+    return  HeaderApi.getHeader(`brands/${id}`,{})
   },
 
   async listar() {
-    return await HeaderApi.getHeader(`brands`,{})
+    return  HeaderApi.getHeader(`brands`,{})
   },
 
   async excluir(brand) {
     const headers = {
       method: 'DELETE',
     }
-    return await HeaderApi.getHeader(`brands/${brand}`,headers)
+    return  HeaderApi.getHeader(`brands/${brand}`,headers)
   }
 };
 

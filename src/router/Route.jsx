@@ -1,12 +1,12 @@
 import React from 'react';
 import { useAuth } from '../hooks/AuthContext';
-import PrivateRoute from './PrivateRouter';
-import PublicRouter from './PublicRouter';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 function Routes() {
     const { token } = useAuth();
 
     return(
-        token ? <PrivateRoute/>:<PublicRouter />
+        token ? <PrivateRoute/>:<PublicRoute />
     );
 }
 export default Routes;

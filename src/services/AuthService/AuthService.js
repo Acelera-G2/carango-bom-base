@@ -7,7 +7,7 @@ const AuthService = {
             "Content-Type" : 'application/json',
         },
       })
-      return await response.json()
+      return response.json()
     },
 }  
 export default AuthService
