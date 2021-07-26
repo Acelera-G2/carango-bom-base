@@ -44,8 +44,8 @@ function RegisterCar() {
         history.goBack();
     }
     
-    const getVehicle = useCallback(async(id) =>{
-        const responseVehicle =  await VehicleService.consultar(id);
+    const getVehicle = useCallback(async(vehicleId) =>{
+        const responseVehicle =  await VehicleService.consultar(vehicleId);
         setValues(responseVehicle)
      },[setValues])
 

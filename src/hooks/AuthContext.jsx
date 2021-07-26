@@ -23,7 +23,8 @@ const AuthProvider = ({ children }) => {
       setData( token );
    }, []);
    const signOut = useCallback(() => {
-      localStorage.removeItem('token');
+      localStorage.removeItem('@calango:token');
+      history.push('/login')
       setData({});
    }, []);
 

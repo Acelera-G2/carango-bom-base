@@ -25,17 +25,14 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import FaceIcon from '@material-ui/icons/Face';
 import {Link} from 'react-router-dom';
+import { useAuth } from '../../hooks/AuthContext';
+
 const drawerWidth = 240;
 const listMenu = [
     {
         text: 'Inicio',
         icon: <HomeIcon />,
         link: '/list-vehicle',
-    },
-    {
-        text: 'Entrar',
-        icon: <FaceIcon />,
-        link: '/login',
     },
     {
         text: 'Veículos',
@@ -56,10 +53,6 @@ const listMenu = [
         text: 'Dashboard',
         icon: <DashboardIcon/>,
     },
-    {
-        text: 'Sair',
-        icon: <ExitToAppIcon/>,
-    }
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -125,6 +118,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = ({children}) => {
+    const{ token,signOut } = useAuth()
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -185,13 +179,25 @@ const Navbar = ({children}) => {
                 <Divider />
                 <List>
                     {listMenu.map((item, index) => 
-                        <Link to={item.link || '/'} key={index}>
+                        <Link to={item.link || '/'} key={index} style={{textDecoration:'none', color: '#212121'}}>
                             <ListItem button>
                                 <ListItemIcon>{item.icon}</ListItemIcon>
                                 <ListItemText primary={item.text} />
                             </ListItem>
-                        </Link>    
+                        </Link>
                     )}
+                    {!token && 
+                    <Link to='/login' style={{textDecoration:'none',color: '#212121'}}>
+                        <ListItem button>
+                                    <ListItemIcon><FaceIcon /></ListItemIcon>
+                                    <ListItemText primary={'Entrar'} />
+                        </ListItem>
+                    </Link>}
+                     { token && 
+                     <ListItem button onClick={signOut}>
+                                <ListItemIcon><ExitToAppIcon/></ListItemIcon>
+                                <ListItemText primary={'Sair'} />
+                     </ListItem>}
                 </List>
             </Drawer>
             <main className={classes.content}>

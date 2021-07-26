@@ -2,7 +2,6 @@ import React from "react";
 import { MemoryRouter, Route } from "react-router-dom";
 import {
   screen,
-  fireEvent,
   render,
   act,
   waitFor,

@@ -1,9 +1,8 @@
 import React from 'react';
 import RegisterCar from './RegisterCar';
-import { render, screen, act, fireEvent,waitFor } from '@testing-library/react';
-import BrandService from '../../services/BrandService/BrandService';
+import { render, screen, act } from '@testing-library/react';
 import VehicleService from '../../services/VehicleService/VehicleService';
-import { Route,Router, MemoryRouter } from 'react-router-dom';
+import { Route, MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 
@@ -111,44 +110,6 @@ describe('<VehicleRegister />', () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
-  // describe('<VehicleRegister /> all fields', () => {
-  //   beforeEach(async () => {
-  //       const inputVehicleModel = screen.getByRole('textbox', {
-  //           name: /Modelo/i,
-  //       });
-  //       // const select = screen.getByTestId('select');
-  //       // const change = fireEvent.change(select, { target: brands[0] });
-  //       const inputVehicleYear = screen.getByRole('textbox', { name: /Ano/i });
-  //       const inputVehicleValue = screen.getByRole('textbox', { name: /Valor/i });
-  //       const submitBtn = screen.getByRole('button', { name: /Cadastrar/i });
-
-  //       userEvent.type(inputVehicleModel, vehicleMock.model);
-  //       userEvent.type(inputVehicleYear, vehicleMock.year);
-  //       userEvent.type(inputVehicleValue, vehicleMock.price);
-  //       // userEvent.type(change, brands[0]);
-  //       // userEvent.selectOptions(change, brands[0]);
-
-  //       await act(async () => userEvent.click(submitBtn));
-  //   });
-  //   it('aaaa', () =>{
-  //     const select = screen.getByTestId('select');
-
-  //   expect(select).toBeInTheDocument();
-
-  //   })
-
-  //   // it('Should call create with correct params', () => {
-  //   //   expect(getAllBrandsSpy).toBeCalledWith(
-  //   //     expect.objectContaining({
-  //   //       id: 1,
-  //   //       model: vehicleMock.model,
-  //   //       year: vehicleMock.year,
-  //   //       value: vehicleMock.value,
-  //   //       brandId: brands[0].id,
-  //   //     })
-  //   //   );
-  //   // });
-  // });
 });
 describe("Update existing vehicle", () => {
     beforeEach(async () => {
@@ -170,12 +131,5 @@ describe("Update existing vehicle", () => {
         const input = screen.getByRole("textbox", { name: /Valor/i });
         expect(input.value).toStrictEqual(vehicleMock.value);
       });
-      // it("should render the vehicle brand fetched from the param id", async () => {
-      //   fireEvent.click(screen.getByTestId("select"));
-      //   fireEvent.mouseDown(accessButton);
-      //   const countryOption = await waitFor(() => screen.getByText("Chevrolet"));
-      //   expect(countryOption).toStrictEqual('Chevrolet');
-      //   expect(change).toStrictEqual(true);
-      // });
     });
    });
