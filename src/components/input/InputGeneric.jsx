@@ -1,12 +1,49 @@
-import React from 'react'
-import {TextField}  from '@material-ui/core';
-           
-const InputGeneric  = ({value, onChange, onBlur, helperText, error, name, id, label, type,variant, fullWidth=false, required, margin}) => {
-    return (
+import React from 'react';
+import { TextField } from '@material-ui/core';
+
+
+function InputGeneric(props) {
+    const {
+        label,
+        id,
+        type,
+        handleChange,
+        name,
+        error,
+        value,
+        onBlur,
+        helperText,
+        variant,
+        fullWidth,
+        margin,
+        select,
+        children,
+        defaultValue
+     } = props
+    return(
         <>
-            <TextField
-                value={value}
-                onChange={onChange}
+            {select &&  <TextField
+                value={value  || ''}
+                onChange={handleChange}
+                onBlur={onBlur}
+                error={error}
+                name={name}
+                id={id}
+                role={'input'}
+                select
+                label={label}
+                variant={variant}
+                fullWidth={fullWidth}
+                margin={margin}
+                helperText={helperText}
+                defaultValue={defaultValue}
+                >
+                {children}
+            </TextField>}
+
+            {!select && <TextField
+                value={value || ''}
+                onChange={handleChange}
                 onBlur={onBlur}
                 helperText={helperText}
                 error={error}
@@ -14,13 +51,12 @@ const InputGeneric  = ({value, onChange, onBlur, helperText, error, name, id, la
                 id={id}
                 label={label}
                 type={type}
+                role={'input'}
                 variant={variant}
                 fullWidth={fullWidth}
-                required={required}
                 margin={margin}
-            />
+            />}
         </>
-    )
+    );
 }
-
-export default InputGeneric
+export { InputGeneric };
