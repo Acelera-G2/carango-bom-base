@@ -58,21 +58,4 @@ describe('<BrandList />', () => {
     userEvent.click(botaoExcluir);
     expect(pushSpy).toHaveBeenCalledWith('/register-user/');
   });
-
-//   it('Should redirect to brand update route when user click on update button', async () => {
-//     const brandSelected = await screen.findByText('Mathaus');
-//     const updateBtn = screen.getByRole('button', { name: 'Alterar' });
-//     userEvent.click(brandSelected);
-//     userEvent.click(updateBtn);
-//     expect(pushSpy).toHaveBeenCalledWith( '/change-user/' + 1);
-//   });
-
-//   it('Should delete item', async () => {
-//     const brandSelected = await screen.findByText('Mathaus');
-//     const deleteBtn = screen.getByRole('button', { name: 'Excluir' });
-//     userEvent.click(brandSelected);
-//     userEvent.click(deleteBtn);
-//     expect(pushSpy).toHaveBeenCalledTimes(0);
-//     expect(brandSelected).toBeInTheDocument();
-//   });
 });
