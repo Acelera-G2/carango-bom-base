@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
- const CadastroMarca = () =>{
+ const RegisterBrand = () =>{
     const classes = useStyles();
     const history = useHistory();
     const { id } = useParams();
@@ -55,12 +55,13 @@ const useStyles = makeStyles(() => ({
         <form onSubmit={handleSubmit} >
             <InputGeneric
                 name="name"
-                value={values.name}
+                value={values?.name}
                 handleChange={handleChange}
                 helperText={errors.name}
                 error={!!errors.name}
-                label="Marca"
+                id="name"
                 type="text"
+                label="Marca"
                 variant="outlined"
                 fullWidth
                 margin="normal"
@@ -88,4 +89,4 @@ const useStyles = makeStyles(() => ({
     );
 }
 
-export default CadastroMarca;
+export default RegisterBrand;
