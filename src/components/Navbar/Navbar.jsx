@@ -24,33 +24,43 @@ import StoreIcon from '@material-ui/icons/Store';
 import PersonIcon from '@material-ui/icons/Person';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
+import FaceIcon from '@material-ui/icons/Face';
+import {Link} from 'react-router-dom';
 
 const drawerWidth = 240;
 const listMenu = [
     {
+        text: 'Inicio',
+        icon: <HomeIcon />,
+        link: '/list-car'
+    },
+    {
         text: 'Entar',
-        icon: <HomeIcon/>
+        icon: <FaceIcon />,
+        link: '/login'
     },
     {
         text: 'Veículos',
-        icon: <DriveEtaIcon/>
+        icon: <DriveEtaIcon/>,
+        link: '/list-car'
     },
     {
         text: 'Marcas',
-        icon: <StoreIcon/>
+        icon: <StoreIcon/>,
+        link: '/'
     },
     {
         text: 'Usuários',
-        icon: <PersonIcon/>
+        icon: <PersonIcon/>,
+        link: '/list-user'
     },
     {
         text: 'Dashboard',
-        icon: <DashboardIcon/>
+        icon: <DashboardIcon/>,
     },
     {
         text: 'Sair',
-        icon: <ExitToAppIcon/>
+        icon: <ExitToAppIcon/>,
     }
 ];
 
@@ -116,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Navbar({children}) {
+const Navbar = ({children}) => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -141,6 +151,7 @@ export default function Navbar({children}) {
                 <Toolbar>
                     <IconButton
                         color="inherit"
+                        name="menuExpandButton"
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
@@ -148,10 +159,10 @@ export default function Navbar({children}) {
                             [classes.hide]: open,
                         })}
                     >
-                        <MenuIcon />
+                        <MenuIcon arial-label="button to Expand menu" data-testid="menuExpand"/>
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Carango Bom
+                        Calango do Ópaió
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -169,17 +180,19 @@ export default function Navbar({children}) {
                 }}
             >
                 <div className={classes.toolbar}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton  arial-label="arrow to close menu" onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>
                 <Divider />
                 <List>
                     {listMenu.map((item, index) => (
-                        <ListItem button key={index}>
-                            <ListItemIcon>{item.icon}</ListItemIcon>
-                            <ListItemText primary={item.text} />
-                        </ListItem>
+                        <Link to={item.link|| '/' } key={index}>
+                            <ListItem button>
+                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemText primary={item.text} />
+                            </ListItem>
+                        </Link>
                     ))}
                 </List>
             </Drawer>
@@ -190,3 +203,5 @@ export default function Navbar({children}) {
         </div>
     );
 }
+
+export { Navbar }
