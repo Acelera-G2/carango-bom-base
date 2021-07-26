@@ -40,7 +40,7 @@ describe('Navbar list itens on menu', () => {
                 <Navbar />
             </BrowserRouter>
         );
-        const NavComponent = screen.getByText('Entar');
+        const NavComponent = screen.getByText('Entrar');
         expect(NavComponent).toBeInTheDocument();
     })
     it('should render the car page',() => {

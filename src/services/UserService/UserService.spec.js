@@ -1,11 +1,11 @@
-import VehicleService from './VehicleService';
-  describe('VehicleService', () => {
+import UserService from './UserService';
+  describe('UserService', () => {
     let globalFetch;
       beforeEach(() => {
           globalFetch = global.fetch;
           global.fetch = jest.fn(() => Promise.resolve({
               json: () => Promise.resolve({
-                id: 1,brand:{id:2, name:'Chevrolet'},model:'Onix',value:'50000',year:'2021'
+                id: 1, username: 'Leandro'
               })
           }));
       });
@@ -16,36 +16,35 @@ import VehicleService from './VehicleService';
       it(('should list Brand'), async () => {
         jest.spyOn(global, 'fetch').mockResolvedValue({
           json: () => [
-            { id: 1,brand:{id:2, name:'Chevrolet'},model:'Onix',value:'50000',year:'2021'},
-            {id: 2,brand:{id:4, name:'Fiesta'},model:'Ford',value:'50000',year:'2021'},
+            { id: 1, username: 'Leandro' },
           ],
         }); 
-        const list = await VehicleService.listar();
+        const list = await UserService.listar();
         expect(list).toBeInstanceOf(Array);
       });
       
       it(('should register new Brand'), async () => {
-        const { brand } = await VehicleService.cadastrar('Chevrolet');
-        expect(brand.name).toBe('Chevrolet');
+        const { username } = await UserService.cadastrar('Leandro');
+        expect(username).toBe('Leandro');
       });
     
       it(('should register update Brand'), async () => {
         jest.spyOn(global, 'fetch').mockResolvedValue({
           json: () => (
-            { id: 1, model: 'Cobalt' }
+            { id: 1, username: 'Renault' }
           ),
         });
-        const { model } = await VehicleService.alterar({ id: 1, model: 'Cobalt' });
-        expect(model).toBe('Cobalt');
+        const { username } = await UserService.alterar({ id: 1, username: 'Renault' });
+        expect(username).toBe('Renault');
       });
     
       it(('should search Brand'), async () => {
-        const { brand } = await VehicleService.consultar(1);
-        expect(brand.name).toBe('Chevrolet');
+        const { username } = await UserService.consultar(1);
+        expect(username).toBe('Leandro');
       });
     
       it(('should delete Brand'), async () => {
-        const { id } = await VehicleService.excluir({ id: 1, name: 'Chevrolet' });
+        const { id } = await UserService.excluir({ id: 1, username: 'Leandro' });
         expect(id).toBe(1);
       });
     });

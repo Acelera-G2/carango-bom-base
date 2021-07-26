@@ -18,7 +18,7 @@ const ListCar = () => {
     const [selectVehicle,setSelectVehicle] = useState();
     const history = useHistory();
     function alterar() {
-        history.push(`/change-car/${selectVehicle.id}`);
+        history.push(`/change-vehicle/${selectVehicle}`);
     }
 
     const excluir = async() => {
@@ -46,7 +46,7 @@ const ListCar = () => {
             updateItem={alterar}
             deleteItem={excluir}
             disabled={!selectVehicle }
-            addItem={() => history.push('/register-car/')}
+            addItem={() => history.push('/register-vehicle/')}
             onRowSelected={setSelectVehicle}
         />
         </div>
