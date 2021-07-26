@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/components/TableGrid/TableGrid.spec.jsx">
+    <testCase name="TableGrid component should render  on page" duration="1456"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/components/Layout/Layout.spec.jsx">
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/pages/User/ListUser.spec.js">
+    <testCase name="&lt;BrandList /&gt; Should render the component" duration="1380"/>
+    <testCase name="&lt;BrandList /&gt; Should redirect to &quot;registrar Usuários&quot; when press &quot;incluir&quot; button" duration="908"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/pages/Login/Login.spec.jsx">
+    <testCase name="Login component should render title on page" duration="598"/>
+    <testCase name="Login component should render input on page" duration="627"/>
+    <testCase name="Login component should render button on page" duration="306"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/services/VehicleService/VehicleService.spec.js">
+    <testCase name="VehicleService should list Brand" duration="7"/>
+    <testCase name="VehicleService should register new Brand" duration="19"/>
+    <testCase name="VehicleService should register update Brand" duration="1"/>
+    <testCase name="VehicleService should search Brand" duration="1"/>
+    <testCase name="VehicleService should delete Brand" duration="0"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/services/UserService/UserService.spec.js">
+    <testCase name="UserService should list Brand" duration="0"/>
+    <testCase name="UserService should register new Brand" duration="0"/>
+    <testCase name="UserService should register update Brand" duration="1"/>
+    <testCase name="UserService should search Brand" duration="0"/>
+    <testCase name="UserService should delete Brand" duration="0"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/pages/User/RegisterUser.spec.jsx">
+    <testCase name="RegisterUser page should render User input" duration="1313"/>
+    <testCase name="RegisterUser page should render User input" duration="628"/>
+    <testCase name="RegisterUser page should render User input" duration="480"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/pages/Brand/registerBrand.spec.js">
+    <testCase name="&lt;VehicleRegister /&gt; Should show error if brand is not provided" duration="1238"/>
+    <testCase name="&lt;VehicleRegister /&gt; Should redirect to &quot;/marcas&quot; when the user press &quot;cadastrar&quot; with valid data" duration="678"/>
+    <testCase name="&lt;VehicleRegister /&gt; Should redirect to &quot;/marcas&quot; when the user press &quot;cancelar&quot; with valid data" duration="419"/>
+    <testCase name="&lt;VehicleRegister /&gt; should register the brand that is typed into the input" duration="492"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/services/BrandService/BrandService.spec.js">
+    <testCase name="BrandService should list Brand" duration="8"/>
+    <testCase name="BrandService should register new Brand" duration="1"/>
+    <testCase name="BrandService should register update Brand" duration="1"/>
+    <testCase name="BrandService should search Brand" duration="0"/>
+    <testCase name="BrandService should delete Brand" duration="1"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/components/Navbar/Navbar.spec.jsx">
+    <testCase name="Navbar component should render the container" duration="813"/>
+    <testCase name="Navbar component should render the logo" duration="356"/>
+    <testCase name="Navbar component should render the menu icon button" duration="1524"/>
+    <testCase name="Navbar list itens on menu should render home page" duration="189"/>
+    <testCase name="Navbar list itens on menu should render the car page" duration="246"/>
+    <testCase name="Navbar list itens on menu should render the brand page" duration="176"/>
+    <testCase name="Navbar list itens on menu should render user page" duration="88"/>
+    <testCase name="Navbar list itens on menu should render dashboard page" duration="99"/>
+    <testCase name="Navbar list itens on menu should render exit page" duration="73"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/pages/Brand/BrandList.spec.js">
+    <testCase name="&lt;BrandList /&gt; Should render the component" duration="1352"/>
+    <testCase name="&lt;BrandList /&gt; Should redirect to &quot;cadastro-marca&quot; when press &quot;incluir&quot; button" duration="1040"/>
+    <testCase name="&lt;BrandList /&gt; Should redirect to brand update route when user click on update button" duration="1245"/>
+    <testCase name="&lt;BrandList /&gt; Should delete item" duration="605"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/pages/Car/RegisterCar.spec.js">
+    <testCase name="&lt;VehicleRegister /&gt; Should render VehicleRegister with form" duration="2237"/>
+    <testCase name="&lt;VehicleRegister /&gt; Should show error message when input model is invalid" duration="611"/>
+    <testCase name="&lt;VehicleRegister /&gt; Should show error message when input year is invalid" duration="340"/>
+    <testCase name="&lt;VehicleRegister /&gt; Should show error message when input price is invalid" duration="278"/>
+    <testCase name="Update existing vehicle It loads the vehicle data into the form should render the vehicle model fetched from the param id" duration="143"/>
+    <testCase name="Update existing vehicle It loads the vehicle data into the form should render the vehicle year fetched from the param id" duration="132"/>
+    <testCase name="Update existing vehicle It loads the vehicle data into the form should render the vehicle price fetched from the param id" duration="148"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/pages/Car/ListCar.spec.js">
+    <testCase name="&lt;ListCar /&gt; Should render the component" duration="1440"/>
+    <testCase name="&lt;ListCar /&gt; Should redirect to &quot;cadastro-marca&quot; when press &quot;incluir&quot; button" duration="1190"/>
+    <testCase name="&lt;ListCar /&gt; Should redirect to brand update route when user click on update button" duration="1275"/>
+    <testCase name="&lt;ListCar /&gt; Should delete item" duration="701"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/components/Button/Button.spec.jsx">
+    <testCase name="Button should have a component button" duration="84"/>
+  </file>
+  <file path="/Users/matthaussoaresbrandao/codes/projetos_tw/carango-bom-base/src/components/Input/InputGeneric.spec.jsx">
+    <testCase name="Input test should render input component on page" duration="68"/>
+    <testCase name="Input test should render input name" duration="13"/>
+  </file>
+</testExecutions>
