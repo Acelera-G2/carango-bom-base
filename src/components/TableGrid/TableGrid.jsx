@@ -33,8 +33,8 @@ const TableGrid = (props) =>{
        
          <div style={{ height: 300, width: '100%' }}>
                 <DataGrid rows={rows || []} columns={columns} pageSize={5}
-                    onRowSelected={(gridSelection) => onRowSelected(gridSelection.data)}
-
+                    onSelectionModelChange={itm =>{
+                        onRowSelected(itm[0])}}
                 />
                 <div className={classes.actionsToolbar}>
                     <ButtonGeneric
