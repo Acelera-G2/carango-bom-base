@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
          token
       } = response;
       localStorage.setItem('@calango:token', token);
-      token && history.push('/list-car')
+      token && history.push('/list-vehicle')
 
       setData( token );
    }, []);

@@ -1,4 +1,4 @@
-import {HeaderApi} from '../HeaderApi'
+import { HeaderApi } from '../HeaderApi'
 const BrandService = {
   async cadastrar(brand) {
     const headers = {

@@ -1,35 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import BrandService from '../../services/BrandService/BrandService';
+import UserService from '../../services/UserService/UserService';
 import { TableGrid } from '../../components';
 
 const columns = [
-    { field: 'name', headerName: 'Marca', width: 200}
+    { field: 'username', headerName: 'Users', width: 200}
 ];
 
-const listUser = [
-    {id: 1, name:'Mathaus'},
-    {id: 2, name:'Yanka'},
-    {id: 3, name:'Renan'},
-    {id: 4, name:'Leandro'}
-]
 function UserList() {
     const [userList, setUserList] = useState([]);
     const [selectUser,setSelectUser] = useState();
     const history = useHistory();
 
     function alterar() {
-        history.push('/change-user/' + selectUser.id);
+        history.push('/change-user/' + selectUser);
     }
 
     const excluir = async() => {
-        // await UserService.excluir(selectBrand.id);
+        await UserService.excluir(selectUser);
         setSelectUser(null)
-        // history.go(0);
+        history.go(0);
     }
     const UserChange = async () => {
-        // const listBrand = await BrandService.listar();
-        // setBrandList(listBrand?.content)
+        const listUser = await UserService.listar();
+        setUserList(listUser?.content)
     }
     useEffect(() => {
         UserChange()
@@ -40,7 +34,7 @@ function UserList() {
 
     return (
         <TableGrid  
-            rows={listUser}
+            rows={userList}
             columns={columns}
             updateItem={alterar}
             deleteItem={excluir}

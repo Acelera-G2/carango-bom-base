@@ -18,7 +18,7 @@ const ListCar = () => {
     const [selectVehicle,setSelectVehicle] = useState();
     const history = useHistory();
     function alterar() {
-        history.push(`/change-car/${selectVehicle}`);
+        history.push(`/change-vehicle/${selectVehicle}`);
     }
 
     const excluir = async() => {

@@ -42,17 +42,17 @@ const PrivateRoute = () =>{
                 
             />
             <IsPrivateRoute 
-                path='/change-car/:id'
+                path='/change-vehicle/:id'
                 component={RegisterCar}
                 
             />
             <IsPrivateRoute 
-                path='/register-car'
+                path='/register-vehicle'
                 component={RegisterCar}
                 
             />
             <IsPrivateRoute 
-                path="/list-car"
+                path="/list-vehicle"
                 component={ListCar}
             />
             <IsPrivateRoute 

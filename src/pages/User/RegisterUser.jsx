@@ -57,6 +57,7 @@ const useStyles = makeStyles(() => ({
         <form onSubmit={handleSubmit} >
             <InputGeneric
                 name="name"
+                id="name"
                 value={values.name}
                 handleChange={handleChange}
                 helperText={errors.name}
@@ -73,7 +74,8 @@ const useStyles = makeStyles(() => ({
                 handleChange={handleChange}
                 helperText={errors.password}
                 error={!!errors.password}
-                label="Senha"
+                label="Senha de Acesso"
+                id="senha"
                 type="password"
                 variant="outlined"
                 fullWidth
@@ -87,6 +89,7 @@ const useStyles = makeStyles(() => ({
                 error={!!errors.confirmPassword}
                 label="Confirmar senha"
                 type="password"
+                id="confirm-senha"
                 variant="outlined"
                 fullWidth
                 margin="normal"

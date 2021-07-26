@@ -1,7 +1,7 @@
 function validateFormBrand(values) {
     let errors = {};
     if (values.name.length < 3) {
-       errors.name = 'Tem que ser maior que 3 caracteres';
+       errors.name = 'Marca precisa ter no mínimo 3 caracteres.';
     }
     return errors
 }
