@@ -12,6 +12,7 @@ render(
   </AuthProvider>
 );
 
+
 beforeEach(async () => {
     rendeRouter();
 });

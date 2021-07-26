@@ -33,6 +33,7 @@ describe('Navbar component', () => {
         expect(menuButton).toBeInTheDocument();      
     })
 })
+
 describe('Navbar list itens on menu', () => {
     it('should render home page',() => {
         const NavComponent = screen.getByText('Entrar');
