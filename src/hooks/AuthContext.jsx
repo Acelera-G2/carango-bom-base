@@ -1,6 +1,6 @@
 import React, { useContext, createContext, useCallback, useState } from 'react';
 import AuthService from '../services/AuthService/AuthService';
-import { useHistory, useParams } from 'react-router';
+import { useHistory } from 'react-router';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
